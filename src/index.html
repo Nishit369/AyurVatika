@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garden-Op</title>
+    <title>AyurVatika</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,31 +20,80 @@
                 </div>
 
                 <div class="title-info">
-                    <p>This is an interactive 3D Garden (part of it LOL)</p>
-                    <p>Made with love and THREE.js</p>
-                    <p>  Instructions </p>
-                    <p> Arrow Keys &#8592;/ &#8593;/ &#8594;/ &#8595;/ OR W/A/S/D </p>
-                    <p> Look around with your <strong>mouse</strong> </p>
-                    <p> Press <strong>Esc</strong> to bring back/ put away mouse</p>
-                    <P> Put your headphones ON baby </p>
+                    <p><strong>Namaskaram!!</strong></p>
+                    <p id="paragraph"> Welcome to your own virtual herbal garden where you shall discover the richness of traditional healing through medicinal plants and gain ancient wisdom all through the comfort of your home.
+                         </p>
+
+                    
                 </div>
 
                 <div id="play_button">
                     <p> Enter The Garden</p>
                 </div>
                 <div id="audio-controls">
-                    <button id="start-sudio"></button>
+                    <button id="start-audio"></button>
+                </div>
+                <div id="about_button_container">
+                    <button id="about_button">ABOUT</button>
                 </div>
 
 
             </div>
         </div>
-
     </div>
    
 
     <div id="model-info"></div>
-    
+    <div id="about-overlay">
+        <button id="close-about">X</button>
+        <h1>About the 3D Virtual Garden</h1>
+        <p>
+          Welcome to your virtual 3D Garden.
+          </p>
+          <p>
+         Here, you can navigate through a
+          variety of wonderful plants and trees and explore their benefits.
+        </p>
+        <p>
+            <strong> You’ll Find :</strong>
+        </p>
+        
+            <blockquote>
+
+           <p> Interactive 3D Models: Immersive experience as you can look from every direction and understand the structure and texture of the plant.</p>
+           <p> Comprehensive Details: Dive deep into each plant’s botanical secrets, medicinal uses, and cultivation tips.</p>
+        </blockquote></p>
+        <p>
+          Feel free to explore and engage with the flora. The garden is best
+          experienced in full-screen mode.
+          </p>
+          <p> For optimal navigation, use the arrow
+          keys or the W, A, S, and D keys. You can also use your mouse to change
+          the viewing direction. 
+          <p>
+            Additional information about the plants will
+          appear on your screen as you approach them.
+        </p>
+      </div>
+  
+      <div id="info-panel">
+        <div id="info-header">
+          <h3>Controls</h3>
+          <button id="toggle-info">Hide</button>
+        </div>
+        <div id="info-content">
+          <p><b>W/A/S/D:</b> Move around</p>
+          <p><b>Mouse:</b> Look around</p>
+          <p><b>C:</b> Crouch</p>
+          <p><b>Space:</b> Toggle pointer lock</p>
+          <p><b>M:</b> Show Menu</p>
+          <p><b>Enter:</b> Start exploration</p>
+          <p><b>Esc:</b> Stop exploration</p>
+          <p><b>G:</b> Start audio guide</p>
+          <p><b>P:</b> Stop audio guide</p>
+
+        </div>
+      </div>
 
 
 <script type="module" src="script.js"></script>

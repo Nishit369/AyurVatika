@@ -61,7 +61,7 @@ canvas {
 
 #menu .title {
   padding: 1em;
-  background-color: rgba(52, 58, 125, 0.8);
+  background: linear-gradient(rgb(193, 253, 193),rgb(121, 255, 3));
   color: #f2c641;
   border-radius: 0.9em;
   position: relative;
@@ -72,10 +72,10 @@ canvas {
 
 @keyframes shadow-pulse {
   0% {
-    text-shadow: 2px 2px 0px #2323be, 4px 4px 0px rgba(0, 0, 0, 0.4);
+    text-shadow: 2px 2px 0px #0eff62, 4px 4px 0px rgba(0, 0, 0, 0.4);
   }
   100% {
-    text-shadow: 4px 4px 0px #2323be, 8px 8px 0px rgba(0, 0, 0, 0.4);
+    text-shadow: 4px 4px 0px #000000, 8px 8px 0px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -84,7 +84,7 @@ canvas {
 }
 
 .title-info {
-  background-color: rgba(35, 37, 88, 0.8);
+  background: -webkit-repeating-radial-gradient(hsl(100, 37%, 27%,0.5),hsl(120, 100%, 78%,0.5));
   color: #f2c641;
   padding: 1em;
   border-radius: 0.9em;
@@ -92,6 +92,7 @@ canvas {
   text-align: center;
   margin: 0 auto;
 }
+
 
 #menu #content {
 
@@ -144,7 +145,10 @@ canvas {
 
 #menu .title h1 {
   margin: 0;
-  font-size: 2.5em;
+  font-size: 2.6em;
+}
+#menu #content .title-info p{
+  font-size: 1.6rem;
 }
 
 
@@ -153,22 +157,24 @@ canvas {
   font-size: 1.1em;
   line-height: 1.6em;
   margin: 0.5em 0;
+  text-shadow: 4px 4px 4px black;
 }
 
 #menu #play_button {
   display: inline-block;
-  background-color: rgba(52, 58, 125, 0.8);
+  background: -webkit-repeating-radial-gradient(hsl(100, 37%, 27%,0.5),hsl(120, 100%, 78%,0.5));
   color: #f2c641;
   border-radius: 0.9em;
   padding: 0.5em 1.5em;
   font-weight: bold;
+  font-size: x-large;
   margin-top: 1em;
   margin-bottom: 1em;
   transition: all 0.4s;
 }
 
 #menu #play_button:hover {
-  background-color: rgba(52, 58, 125);
+  background-color: rgb(0, 255, 51);
   cursor: pointer;
   transform: scale(1.05);
 }
@@ -204,7 +210,7 @@ canvas {
   background-position: 0 0;  /* Start from the left */
   background-repeat: repeat-x;  /* Allow the image to repeat horizontally */
   z-index: -1;
-  animation: panBg 30s linear infinite;  /* Reduced duration */
+  animation: panBg 15s linear infinite;  /* Reduced duration */
 }
 
 
@@ -216,7 +222,7 @@ canvas {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 @keyframes panBg {
@@ -263,8 +269,56 @@ canvas {
   margin: 0;
   font-size: 1.2em;
 } 
+#info-panel {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 200px;
+  background: -webkit-repeating-radial-gradient(rgba(85, 255, 0, 0.8),rgba(0, 0, 0, 0.8));
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
 
+#info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
 
+#info-header h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0;
+}
+
+#info-header button {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  color: #2323be;
+}
+
+#info-content {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+#info-content p {
+  margin: 5px 0;
+}
+
+#info-panel.collapsed #info-content {
+  max-height: 0;
+  overflow: hidden;
+}
 
 #about-overlay {
   position: fixed;
@@ -287,12 +341,18 @@ canvas {
 #about-overlay h1 {
   margin-top: 0;
 }
+#about-overlay p{
+  font-size: medium;
+}
+#about-overlay p blockquote{
+  font-size: xx-large;
+}
 
 #close-about {
   background: none;
   border: none;
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
   position: absolute;
   top: 10px;
   right: 20px;
@@ -301,41 +361,19 @@ canvas {
 
 #about_button {
   display: inline-block;
-  background-color: rgba(52, 58, 125, 0.8);
+  background: -webkit-repeating-radial-gradient(hsl(100, 37%, 27%,0.5),hsl(120, 100%, 78%,0.5));
   color: #f2c641;
   border-radius: 30px;
   padding: 0.5em 1.5em;
   font-weight: bold;
-  margin: 0 auto;
+  font-size: large;
+  margin: 0 auto; /* Centered the button */
   transition: all 0.4s;
-  border: 2px solid #2323be;
+  border: 2px solid #00ff6a;
 }
 
 #about_button:hover {
-  background-color: rgba(52, 58, 125);
+  background-color: rgb(0, 255, 34);
   cursor: pointer;
   transform: scale(1.05);
-}
-
-#audio_controls {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 2; 
-}
-
-#audio_controls button {
-  display: block;
-  background-color: rgba(35, 37, 88, 0.8);
-  color: #f2c641;
-  border: none;
-  border-radius: 10px;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#audio_controls button:hover {
-  background-color: rgba(52, 58, 125, 0.8);
 }

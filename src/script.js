@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RGBELoader} from 'three/examples/jsm/loaders/RGBELoader.js';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
+import gsap from 'gsap';
 
 const loadingManager = new THREE.LoadingManager()
 
@@ -130,29 +131,62 @@ function updateMovement(delta) {
 }
 
 // Textures and materials
-let textureLoader = new THREE.TextureLoader(loadingManager)
+const textureLoader = new THREE.TextureLoader(loadingManager);
 
-const floorTexture = new THREE.TextureLoader().load('/grasses.jpg');
-floorTexture.minFilter= THREE.LinearFilter;
-floorTexture.magFilter= THREE.LinearFilter;
+// Load the textures
+const floorTexture = textureLoader.load('/grass4.jpg');
+const patchTexture = textureLoader.load('/patch2.jpeg');
+
+
+
+// Configure texture properties
+floorTexture.minFilter = THREE.LinearFilter;
+floorTexture.magFilter = THREE.LinearFilter;
 floorTexture.wrapS = THREE.RepeatWrapping;
 floorTexture.wrapT = THREE.RepeatWrapping;
-floorTexture.repeat.set(20,20);
+floorTexture.repeat.set(20,20); // Adjust repeat for better appearance
 
 // Floor geometry and material
 const planeGeometry = new THREE.PlaneGeometry(100, 100);
-const planeMaterial = new THREE.MeshBasicMaterial({
+const patchGeometry = new THREE.PlaneGeometry(10, 10);
+const planeMaterial = new THREE.MeshStandardMaterial({
     map: floorTexture,
     side: THREE.DoubleSide
 });
+const patchMaterial = new THREE.MeshStandardMaterial({
+    map: patchTexture,
+    side: THREE.DoubleSide
+});
+patchMaterial.depthTest = true;
+patchMaterial.depthWrite = true;
+
+// Create and position the floor
 const floorPlane = new THREE.Mesh(planeGeometry, planeMaterial);
 floorPlane.rotation.x = -Math.PI / 2;
 floorPlane.position.y = -3;
+floorPlane.receiveShadow = true; // Make sure shadows are enabled
+const patchPlane1 = new THREE.Mesh(patchGeometry, patchMaterial);
+const patchPlane2 = new THREE.Mesh(patchGeometry, patchMaterial);
+const patchPlane3 = new THREE.Mesh(patchGeometry, patchMaterial);
+const patchPlane4 = new THREE.Mesh(patchGeometry, patchMaterial);
+const patchPlane5 = new THREE.Mesh(patchGeometry, patchMaterial);
+patchPlane1.position.set(-20,-2.999,35)
+patchPlane1.rotation.set(Math.PI/2,0,0)
+patchPlane2.position.set(20,-2.999,35)
+patchPlane2.rotation.set(Math.PI/2,0,0)
+patchPlane3.position.set(-20,-2.999,10)
+patchPlane3.rotation.set(Math.PI/2,0,0)
+patchPlane4.position.set(20,-2.999,10)
+patchPlane4.rotation.set(Math.PI/2,0,0)
+patchPlane5.position.set(0,-2.999,0)
+patchPlane5.rotation.set(Math.PI/2,0,0)
 
+// Add the floor to the scene
 scene.add(floorPlane);
+scene.add(patchPlane1,patchPlane2,patchPlane3,patchPlane4,patchPlane5);
 
 // Camera positioning
-camera.position.set(0, 3, 10);
+camera.position.set(0, 3, 45);
 
 // Sky setup
 const sky = new Sky();
@@ -195,12 +229,69 @@ const popup = document.getElementById('model-info');
 
 // Model data array
 const modelData = [
+    // 1st set
     {
         path: 'giloye.glb',
-        position: { x: -5, y: -3, z: 0 },
+        position: { x: -20, y: -3, z: 35 },
         scale: {x:10, y:10, z:10},
         info: { title: 'Model 1', description: 'This is a description for Model 1' }
     },
+    {
+        path: 'giloye.glb',
+        position: { x: -23, y: -3, z: 38 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    {
+        path: 'giloye.glb',
+        position: { x: -17, y: -3, z: 38 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    {
+        path: 'giloye.glb',
+        position: { x: -17, y: -3, z: 32 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    {
+        path: 'giloye.glb',
+        position: { x: -23, y: -3, z: 32 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    // 2nd set
+    {
+        path: 'giloye.glb',
+        position: { x: 20, y: -3, z: 35 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    {
+        path: 'giloye.glb',
+        position: { x: 23, y: -3, z: 32 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    {
+        path: 'giloye.glb',
+        position: { x: 17, y: -3, z: 32 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    {
+        path: 'giloye.glb',
+        position: { x: 23, y: -3, z: 38 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    {
+        path: 'giloye.glb',
+        position: { x: 17, y: -3, z: 38 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+
     // Add more models here as needed
 ];
 
@@ -234,6 +325,188 @@ function hideModelInfo() {
 // Controls
 const controls = new PointerLockControls(camera, document.body)
 
+let lockPointer = true;
+let showMenuOnUnlock = false;
+
+// add the controls parameter which is the pointer lock controls and is passed from main.js where setupEventListeners is called
+export const setupEventListeners = (controls, camera, scene) => {
+  // add the event listeners to the document which is the whole page
+  document.addEventListener(
+    "keydown",
+    (event) => onKeyDown(event, controls),
+    false
+  );
+  document.addEventListener(
+    "keyup",
+    (event) => onKeyUp(event, controls),
+    false
+  );
+
+  controls.addEventListener("unlock", () => {
+    if (showMenuOnUnlock) {
+      showMenu();
+    }
+    showMenuOnUnlock = false;
+  });
+
+  // Add event listeners for the audio guide buttons
+  document.getElementById("start_audio").addEventListener("click", startAudio);
+  document.getElementById("stop_audio").addEventListener("click", stopAudio);
+};
+
+// toggle the pointer lock
+function togglePointerLock(controls) {
+  if (lockPointer) {
+    controls.lock();
+  } else {
+    showMenuOnUnlock = false;
+    controls.unlock();
+  }
+  lockPointer = !lockPointer; // toggle the lockPointer variable
+}
+
+function onKeyDown(event, controls) {
+  // event is the event object that has the key property
+  if (event.key in keysPressed) {
+    // check if the key pressed by the user is in the keysPressed object
+    keysPressed[event.key] = true; // if yes, set the value of the key pressed to true
+  }
+
+  if (event.key === "Escape") {
+    // if the "ESC" key is pressed
+    showMenu(); // show the menu
+    showMenuOnUnlock = true;
+    controls.unlock(); // unlock the pointer
+    lockPointer = false;
+  }
+
+  if (event.key === "p") {
+    // if the "SPACE" key is pressed
+    controls.unlock(); // unlock the pointer
+    lockPointer = false;
+  }
+
+  // if key prssed is enter or return for mac
+  if (event.key === "Enter" || event.key === "Return") {
+    // if the "ENTER" key is pressed
+    hideMenu(); // hide the menu
+    controls.lock(); // lock the pointer
+    lockPointer = true;
+  }
+
+  if (event.key === " ") {
+    // if the "p" key is pressed
+    togglePointerLock(controls); // toggle the pointer lock
+  }
+
+  if (event.key === "g") {
+    // if the "a" key is pressed
+    startAudio(); // start the audio guide
+  }
+
+  if (event.key === "p") {
+    // if the "s" key is pressed
+    stopAudio(); // stop the audio guide
+  }
+
+  if (event.key === "m") {
+    // if the "h" key is pressed
+    showMenu(); // show the menu
+    showMenuOnUnlock = true;
+    controls.unlock(); // unlock the pointer
+    lockPointer = false;
+  }
+
+  if (event.key === "r") {
+    // if the "r" key is pressed
+    location.reload(); // reload the page
+  }
+  if (event.key === 'c') {
+    toggleCrouch();
+}
+}
+
+const crouchHeight = 1;
+const standHeight = 3;
+const crouchScale = 0.5;
+const standScale = 1;
+
+// Variable to track crouch state
+let isCrouching = false;
+
+function toggleCrouch() {
+    if (isCrouching) {
+        // Transition to standing
+        gsap.to(camera.position, {
+            y: standHeight,
+            duration: 1, // Duration in seconds
+            ease: 'power1.out'
+        });
+        gsap.to(camera.scale, {
+            x: standScale,
+            y: standScale,
+            z: standScale,
+            duration: 1, // Duration in seconds
+            ease: 'power1.out'
+        });
+    } else {
+        // Transition to crouching
+        gsap.to(camera.position, {
+            y: crouchHeight,
+            duration: 1, // Duration in seconds
+            ease: 'power1.out'
+        });
+        gsap.to(camera.scale, {
+            x: crouchScale,
+            y: crouchScale,
+            z: crouchScale,
+            duration: 1, // Duration in seconds
+            ease: 'power1.out'
+        });
+    }
+
+    // Update crouch state
+    isCrouching = !isCrouching;
+}
+
+function onKeyUp(event, controls) {
+  // same but for keyup
+  if (event.key in keysPressed) {
+    keysPressed[event.key] = false; // set to false when the key is released
+  }
+}
+
+document.getElementById("toggle-info").addEventListener("click", () => {
+  document.getElementById("info-panel").classList.toggle("collapsed");
+  document.getElementById("toggle-info").innerText = document
+    .getElementById("info-panel")
+    .classList.contains("collapsed")
+    ? "Show"
+    : "Hide";
+});
+
+document.getElementById("about_button").addEventListener("click", function () {
+  document.getElementById("about-overlay").classList.add("show");
+});
+
+document.getElementById("close-about").addEventListener("click", function () {
+  document.getElementById("about-overlay").classList.remove("show");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function startExperience() {
     controls.lock();
     hideMenu();
@@ -256,7 +529,7 @@ function hideMenu() {
 
 function showMenu() {
     const menu = document.getElementById("menu");
-    menu.style.display = "block";
+    menu.style.display ="block";
 }
 
 controls.addEventListener("unlock", endExperience);
@@ -307,7 +580,7 @@ const setupRendering = (scene, camera, renderer, models, controls) => {
 
 // Start rendering
 setupRendering(scene, camera, renderer, models, controls);
-
+setupEventListeners(controls);
 
 // Handle window resize
 window.addEventListener('resize', () => {
