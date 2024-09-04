@@ -1,15 +1,2 @@
-## Setup
-
-Download [Node.js](https://nodejs.org/en/download/).
-Run this followed commands:
-
-```bash
-# Install dependencies (only the first time)
-npm install
-
-# Run the local server at localhost:8080
-npm run dev
-
-# Build for production in the dist/ directory
-npm run build
-```
+# AyurVatika
+An interactive 3D virtual garden that provides a garden schemed atmosphere where users can move freely and get information about the plants available , their benefits and how to cultivate them. 
