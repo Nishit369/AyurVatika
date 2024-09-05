@@ -20,7 +20,6 @@ light.position.set(-18, -3, 8).normalize();
 scene.add(light);
 
 scene.add(camera)
-camera.position.z = 5;
 
 const setupAudio = (camera) => {
     const listener = new THREE.AudioListener();
@@ -114,30 +113,12 @@ document.addEventListener('keyup',
 
 const clock = new THREE.Clock();
 
-function updateMovement(delta) {
-    const moveSpeed = 5 * delta
-    if (keysPressed.ArrowRight || keysPressed.d){
-        controls.moveRight(moveSpeed)
-    }
-    if (keysPressed.ArrowLeft || keysPressed.a){
-        controls.moveRight(-moveSpeed)
-    }
-    if (keysPressed.ArrowUp || keysPressed.w){
-        controls.moveForward(moveSpeed)
-    }
-    if (keysPressed.ArrowDown || keysPressed.s){
-        controls.moveForward(-moveSpeed)
-    }
-}
-
 // Textures and materials
 const textureLoader = new THREE.TextureLoader(loadingManager);
 
 // Load the textures
 const floorTexture = textureLoader.load('/grass4.jpg');
 const patchTexture = textureLoader.load('/patch2.jpeg');
-
-
 
 // Configure texture properties
 floorTexture.minFilter = THREE.LinearFilter;
@@ -229,70 +210,7 @@ const popup = document.getElementById('model-info');
 
 // Model data array
 const modelData = [
-    // 1st set
-    {
-        path: 'giloye.glb',
-        position: { x: -20, y: -3, z: 35 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-    {
-        path: 'giloye.glb',
-        position: { x: -23, y: -3, z: 38 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-    {
-        path: 'giloye.glb',
-        position: { x: -17, y: -3, z: 38 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-    {
-        path: 'giloye.glb',
-        position: { x: -17, y: -3, z: 32 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-    {
-        path: 'giloye.glb',
-        position: { x: -23, y: -3, z: 32 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-    // 2nd set
-    {
-        path: 'giloye.glb',
-        position: { x: 20, y: -3, z: 35 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-    {
-        path: 'giloye.glb',
-        position: { x: 23, y: -3, z: 32 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-    {
-        path: 'giloye.glb',
-        position: { x: 17, y: -3, z: 32 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-    {
-        path: 'giloye.glb',
-        position: { x: 23, y: -3, z: 38 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-    {
-        path: 'giloye.glb',
-        position: { x: 17, y: -3, z: 38 },
-        scale: {x:10, y:10, z:10},
-        info: { title: 'Model 1', description: 'This is a description for Model 1' }
-    },
-
-    // Add more models here as needed
+    // Your model data here
 ];
 
 // Load models and add to scene
@@ -328,9 +246,93 @@ const controls = new PointerLockControls(camera, document.body)
 let lockPointer = true;
 let showMenuOnUnlock = false;
 
-// add the controls parameter which is the pointer lock controls and is passed from main.js where setupEventListeners is called
+// Fence loading and collision detection
+const fenceLoader = new GLTFLoader();
+const fences = [];
+
+// Load fence model and position around the plane
+function loadFences() {
+    const fencePositions = [
+        { x: -50, z: 0 },
+        { x: 0, z: -50 },
+        { x: 0, z: 50 },
+        { x: 50, z: 0 }
+    ];
+
+    fencePositions.forEach((pos, index) => {
+        fenceLoader.load('wallfence.glb', (gltf) => {
+            const fence = gltf.scene;
+            fence.position.set(pos.x, -3, pos.z);
+            fence.scale.set(30, 10, 10); // Adjust scale as needed
+            
+            // Rotate fence to face inward
+            if (index === 0 || index === 3) {
+                fence.rotation.y = Math.PI / 2;
+            }
+            
+            fences.push(fence);
+            scene.add(fence);
+        });
+    });
+}
+
+loadFences();
+
+// Collision detection
+const collisionDistance = 2; // Adjust this value based on your fence size
+
+function checkCollision(newPosition) {
+    for (let fence of fences) {
+        const fenceBoundingBox = new THREE.Box3().setFromObject(fence);
+        const playerBoundingBox = new THREE.Box3().setFromCenterAndSize(
+            newPosition,
+            new THREE.Vector3(1, 3, 1) // Adjust size based on your player's dimensions
+        );
+
+        if (fenceBoundingBox.intersectsBox(playerBoundingBox)) {
+            return true; // Collision detected
+        }
+    }
+    return false; // No collision
+}
+
+// Modify the updateMovement function
+function updateMovement(delta) {
+    const moveSpeed = 25 * delta;
+    const newPosition = new THREE.Vector3();
+    camera.getWorldPosition(newPosition);
+
+    if (keysPressed.ArrowRight || keysPressed.d) {
+        controls.moveRight(moveSpeed);
+        camera.getWorldPosition(newPosition);
+        if (checkCollision(newPosition)) {
+            controls.moveRight(-moveSpeed); // Move back if collision detected
+        }
+    }
+    if (keysPressed.ArrowLeft || keysPressed.a) {
+        controls.moveRight(-moveSpeed);
+        camera.getWorldPosition(newPosition);
+        if (checkCollision(newPosition)) {
+            controls.moveRight(moveSpeed); // Move back if collision detected
+        }
+    }
+    if (keysPressed.ArrowUp || keysPressed.w) {
+        controls.moveForward(moveSpeed);
+        camera.getWorldPosition(newPosition);
+        if (checkCollision(newPosition)) {
+            controls.moveForward(-moveSpeed); // Move back if collision detected
+        }
+    }
+    if (keysPressed.ArrowDown || keysPressed.s) {
+        controls.moveForward(-moveSpeed);
+        camera.getWorldPosition(newPosition);
+        if (checkCollision(newPosition)) {
+            controls.moveForward(moveSpeed); // Move back if collision detected
+        }
+    }
+}
+
 export const setupEventListeners = (controls, camera, scene) => {
-  // add the event listeners to the document which is the whole page
   document.addEventListener(
     "keydown",
     (event) => onKeyDown(event, controls),
@@ -349,12 +351,10 @@ export const setupEventListeners = (controls, camera, scene) => {
     showMenuOnUnlock = false;
   });
 
-  // Add event listeners for the audio guide buttons
   document.getElementById("start_audio").addEventListener("click", startAudio);
   document.getElementById("stop_audio").addEventListener("click", stopAudio);
 };
 
-// toggle the pointer lock
 function togglePointerLock(controls) {
   if (lockPointer) {
     controls.lock();
@@ -362,68 +362,57 @@ function togglePointerLock(controls) {
     showMenuOnUnlock = false;
     controls.unlock();
   }
-  lockPointer = !lockPointer; // toggle the lockPointer variable
+  lockPointer = !lockPointer;
 }
 
 function onKeyDown(event, controls) {
-  // event is the event object that has the key property
   if (event.key in keysPressed) {
-    // check if the key pressed by the user is in the keysPressed object
-    keysPressed[event.key] = true; // if yes, set the value of the key pressed to true
+    keysPressed[event.key] = true;
   }
 
   if (event.key === "Escape") {
-    // if the "ESC" key is pressed
-    showMenu(); // show the menu
+    showMenu();
     showMenuOnUnlock = true;
-    controls.unlock(); // unlock the pointer
+    controls.unlock();
     lockPointer = false;
   }
 
   if (event.key === "p") {
-    // if the "SPACE" key is pressed
-    controls.unlock(); // unlock the pointer
+    controls.unlock();
     lockPointer = false;
   }
 
-  // if key prssed is enter or return for mac
   if (event.key === "Enter" || event.key === "Return") {
-    // if the "ENTER" key is pressed
-    hideMenu(); // hide the menu
-    controls.lock(); // lock the pointer
+    hideMenu();
+    controls.lock();
     lockPointer = true;
   }
 
   if (event.key === " ") {
-    // if the "p" key is pressed
-    togglePointerLock(controls); // toggle the pointer lock
+    togglePointerLock(controls);
   }
 
   if (event.key === "g") {
-    // if the "a" key is pressed
-    startAudio(); // start the audio guide
+    startAudio();
   }
 
   if (event.key === "p") {
-    // if the "s" key is pressed
-    stopAudio(); // stop the audio guide
+    stopAudio();
   }
 
   if (event.key === "m") {
-    // if the "h" key is pressed
-    showMenu(); // show the menu
+    showMenu();
     showMenuOnUnlock = true;
-    controls.unlock(); // unlock the pointer
+    controls.unlock();
     lockPointer = false;
   }
 
   if (event.key === "r") {
-    // if the "r" key is pressed
-    location.reload(); // reload the page
+    location.reload();
   }
   if (event.key === 'c') {
     toggleCrouch();
-}
+  }
 }
 
 const crouchHeight = 1;
@@ -431,48 +420,43 @@ const standHeight = 3;
 const crouchScale = 0.5;
 const standScale = 1;
 
-// Variable to track crouch state
 let isCrouching = false;
 
 function toggleCrouch() {
     if (isCrouching) {
-        // Transition to standing
         gsap.to(camera.position, {
             y: standHeight,
-            duration: 1, // Duration in seconds
+            duration: 1,
             ease: 'power1.out'
         });
         gsap.to(camera.scale, {
             x: standScale,
             y: standScale,
             z: standScale,
-            duration: 1, // Duration in seconds
+            duration: 1,
             ease: 'power1.out'
         });
     } else {
-        // Transition to crouching
         gsap.to(camera.position, {
             y: crouchHeight,
-            duration: 1, // Duration in seconds
+            duration: 1,
             ease: 'power1.out'
         });
         gsap.to(camera.scale, {
             x: crouchScale,
             y: crouchScale,
             z: crouchScale,
-            duration: 1, // Duration in seconds
+            duration: 1,
             ease: 'power1.out'
         });
     }
 
-    // Update crouch state
     isCrouching = !isCrouching;
 }
 
 function onKeyUp(event, controls) {
-  // same but for keyup
   if (event.key in keysPressed) {
-    keysPressed[event.key] = false; // set to false when the key is released
+    keysPressed[event.key] = false;
   }
 }
 
@@ -492,20 +476,6 @@ document.getElementById("about_button").addEventListener("click", function () {
 document.getElementById("close-about").addEventListener("click", function () {
   document.getElementById("about-overlay").classList.remove("show");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function startExperience() {
     controls.lock();
@@ -534,55 +504,55 @@ function showMenu() {
 
 controls.addEventListener("unlock", endExperience);
 
-// Setup rendering function
 const setupRendering = (scene, camera, renderer, models, controls) => {
-  const clock = new THREE.Clock();
-  const distanceThreshold = 5; // Adjust this value as needed
+    const clock = new THREE.Clock();
+    const distanceThreshold = 5;
+    const raycaster = new THREE.Raycaster();
 
-  let render = function () {
-      const delta = clock.getDelta();
+    let render = function () {
+        const delta = clock.getDelta();
 
-      updateMovement(delta);
+        updateMovement(delta);
 
-      // Check for nearby models only if controls are locked
-      if (controls.isLocked) {
-          let modelToShow = null;
-          let closestDistance = Infinity;
+        if (controls.isLocked) {
+            let modelToShow = null;
+            let closestDistance = Infinity;
 
-          models.forEach((model) => {
-              // Calculate distance ignoring y-axis difference
-              const dx = camera.position.x - model.position.x;
-              const dz = camera.position.z - model.position.z;
-              const distanceToModel = Math.sqrt(dx * dx + dz * dz);
-              
-              if (distanceToModel < distanceThreshold && distanceToModel < closestDistance) {
-                  modelToShow = model;
-                  closestDistance = distanceToModel;
-              }
-          });
+            models.forEach((model) => {
+                const dx = camera.position.x - model.position.x;
+                const dz = camera.position.z - model.position.z;
+                const distanceToModel = Math.sqrt(dx * dx + dz * dz);
 
-          if (modelToShow) {
-              console.log("Model in range:", modelToShow.userData.info);
-              displayModelInfo(modelToShow.userData.info);
-          } else {
-              hideModelInfo();
-          }
-      } else {
-          hideModelInfo();
-      }
+                if (distanceToModel < distanceThreshold && distanceToModel < closestDistance) {
+                    raycaster.set(camera.position, camera.getWorldDirection(new THREE.Vector3()));
+                    const intersections = raycaster.intersectObject(model, true);
+                    if (intersections.length > 0) {
+                        modelToShow = model;
+                        closestDistance = distanceToModel;
+                    }
+                }
+            });
 
-      renderer.render(scene, camera);
-      requestAnimationFrame(render);
-  };
+            if (modelToShow && closestDistance <= distanceThreshold) {
+                console.log("Model in range:", modelToShow.userData.info);
+                displayModelInfo(modelToShow.userData.info);
+            } else {
+                hideModelInfo();
+            }
+        } else {
+            hideModelInfo();
+        }
 
-  render();
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
+    };
+
+    render();
 };
 
-// Start rendering
 setupRendering(scene, camera, renderer, models, controls);
 setupEventListeners(controls);
 
-// Handle window resize
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Aloe vera plant
+* source:	https://sketchfab.com/3d-models/aloe-vera-plant-66c6699e50ab4863989777f920a981dd
+* author:	matousekfoto (https://sketchfab.com/matousekfoto)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Aloe vera plant" (https://sketchfab.com/3d-models/aloe-vera-plant-66c6699e50ab4863989777f920a981dd) by matousekfoto (https://sketchfab.com/matousekfoto) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
