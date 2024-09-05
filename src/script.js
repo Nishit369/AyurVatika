@@ -184,6 +184,25 @@ gltfLoader.load(
   }
 );
 
+// side flowers
+// gltfLoader.load(
+//   "gardening._park._landscape._7_a/scene.gltf", // Replace with the path to your GLTF/GLB file
+//   (gltf) => {
+//     const model5 = gltf.scene;
+//     model5.rotation.x = Math.PI;
+//     model5.rotation.z = Math.PI;
+//     model5.position.set(-40,-40,-20 );
+//     model5.scale.set(10,10,10);
+//     scene.add(model5)
+//   },
+//   (xhr) => {
+//     console.log(`Model ${(xhr.loaded / xhr.total) * 100}% loaded`); // Track loading progress
+//   },
+//   (error) => {
+//     console.error("Error loading model:", error); // Capture any errors
+//   }
+// );
+
 // Floor geometry and material
 const planeGeometry = new THREE.PlaneGeometry(100, 100);
 const patchGeometry = new THREE.PlaneGeometry(10, 10);
@@ -268,6 +287,172 @@ const popup = document.getElementById("model-info");
 // Model data array
 const modelData = [
   // Your model data here
+//   {
+//     path: 'giloye.glb',
+//     position: { x: -20, y: -3, z: 20 },
+//     scale: {x:10, y:10, z:10},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'giloye.glb',
+//     position: { x: -23, y: -3, z: 17 },
+//     scale: {x:10, y:10, z:10},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'giloye.glb',
+//     position: { x: -23, y: -3, z: 23 },
+//     scale: {x:10, y:10, z:10},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'giloye.glb',
+//     position: { x: -17, y: -3, z: 23 },
+//     scale: {x:10, y:10, z:10},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'giloye.glb',
+//     position: { x: -17, y: -3, z: 17 },
+//     scale: {x:10, y:10, z:10},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// // 2nd set
+// {
+//     path: 'golumolu.glb',
+//     position: { x: 6.5, y: -3, z: 20 },
+//     scale: {x:20, y:20, z:20},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+  
+// {
+//     path: 'golumolu.glb',
+//     position: { x: 3, y: -3, z: 17 },
+//     scale: {x:20, y:20, z:20},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'golumolu.glb',
+//     position: { x: 3, y: -3, z: 23 },
+//     scale: {x:20, y:20, z:20},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'golumolu.glb',
+//     position: { x: 10, y: -3, z: 23 },
+//     scale: {x:20, y:20, z:20},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'golumolu.glb',
+//     position: { x: 10, y: -3, z: 17 },
+//     scale: {x:20, y:20, z:20},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+
+// 3rd set
+// {
+//     path: 'aloe-vera-final.glb',
+//     position: { x:20, y: -4, z: -20 },
+//     scale: {x:5, y:5, z:5},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+  
+// {
+//     path: 'aloe-vera-final.glb',
+//     position: { x: 17, y: -4, z: -23 },
+//     scale: {x:5, y:5, z:5},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'aloe-vera-final.glb',
+//     position: { x: 17, y: -4, z:  -17},
+//     scale: {x:5, y:5, z:5},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'aloe-vera-final.glb',
+//     position: { x: 23, y: -4, z: -23 },
+//     scale: {x:5, y:5, z:5},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'aloe-vera-final.glb',
+//     position: { x: 23, y: -4, z: -17 },
+//     scale: {x:5, y:5, z:5},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+
+//4th set
+// {
+//     path: 'Tulsi.glb',
+//     position: { x: -20, y: -3, z:-20 },
+//     scale: {x:8, y:8, z:8},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+  
+// {
+//     path: 'Tulsi.glb',
+//     position: { x: -23, y: -3, z: -23 },
+//     scale: {x:8, y:8, z:8},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'Tulsi.glb',
+//     position: { x: -23, y: -3, z: -17},
+//     scale: {x:8, y:8, z:8},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'Tulsi.glb',
+//     position: { x: -17, y: -3, z: -17 },
+//     scale: {x:8, y:8, z:8},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'Tulsi.glb',
+//     position: { x: -17, y: -3, z: -23 },
+//     scale: {x:8, y:8, z:8},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+
+
+// 5th set
+// {
+//     path: 'Nilgiri_final.glb',
+//     position: { x: 0, y: -3, z: -35 },
+//     scale: {x:0.1, y:0.1, z:0.1},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+  
+// {
+//     path: 'Nilgiri_final.glb',
+//     position: { x: 3, y: -3, z: -32 },
+//     scale: {x:4, y:4, z:4},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'Nilgiri_final.glb',
+//     position: { x: 3, y: -3, z: -38 },
+//     scale: {x:4, y:4, z:4},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'Nilgiri_final.glb',
+//     position: { x: -3, y: -3, z: -32 },
+//     scale: {x:4, y:4, z:4},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+// {
+//     path: 'Nilgiri_final.glb',
+//     position: { x: -3, y: -3, z: -38 },
+//     scale: {x:4, y:4, z:4},
+//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+// },
+
+
+
+
 ];
 
 // Load models and add to scene
