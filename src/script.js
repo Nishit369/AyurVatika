@@ -15,6 +15,7 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHei
 
 const gltfLoader = new GLTFLoader();
 
+
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(-18, -3, 8).normalize();
 scene.add(light);
@@ -126,6 +127,36 @@ floorTexture.magFilter = THREE.LinearFilter;
 floorTexture.wrapS = THREE.RepeatWrapping;
 floorTexture.wrapT = THREE.RepeatWrapping;
 floorTexture.repeat.set(20,20); // Adjust repeat for better appearance
+
+
+
+// lamp
+
+gltfLoader.load(
+    'street_lamp.glb', // Replace with the path to your GLTF/GLB file
+    (gltf) => {
+      const model1 = gltf.scene;
+      model1.position.set(-42.5,-3,-42.5);
+      model1.scale.set(0.02, 0.02, 0.02);
+    const model2 = model1.clone()
+    model2.position.set(-42.5, -3, 42.5);
+    model2.scale.set(0.02, 0.02, 0.02);
+    const model3 = model1.clone()
+    model3.position.set(42.5, -3, -42.5);
+    model3.scale.set(0.02, 0.02, 0.02);
+    const model4 = model1.clone()
+    model4.position.set(42.5, -3, 42.5);
+    model4.scale.set(0.02, 0.02, 0.02);
+    scene.add(model1,model2,model3,model4)
+
+    });
+
+
+// fountain 
+
+
+
+
 
 // Floor geometry and material
 const planeGeometry = new THREE.PlaneGeometry(100, 100);
