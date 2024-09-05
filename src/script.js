@@ -158,6 +158,43 @@ gltfLoader.load(
 
 
 
+
+
+
+
+// bench
+
+gltfLoader.load(
+    'bench.glb', // Replace with the path to your GLTF/GLB file
+    (gltf) => {
+      const model1 = gltf.scene;
+      model1.position.set(-42.5,-3,-3.5);
+      model1.scale.set(4,4,4);
+    const model2 = model1.clone()
+    model2.position.set(-42.5, -3, 15);
+    model2.scale.set(4,4,4);
+    const model3 = model1.clone()
+    model3.rotation.y=Math.PI;
+    model3.position.set(42.5, -3,-15);
+    model3.scale.set(4,4,4);
+    const model4 = model1.clone()
+    model4.rotation.y=Math.PI;
+    model4.position.set(42.5, -3, 3.5);
+    model4.scale.set(4,4,4);
+    scene.add(model1,model2,model3,model4)
+
+    });
+
+
+
+
+
+
+
+
+
+
+
 // Floor geometry and material
 const planeGeometry = new THREE.PlaneGeometry(100, 100);
 const patchGeometry = new THREE.PlaneGeometry(10, 10);
@@ -182,15 +219,15 @@ const patchPlane2 = new THREE.Mesh(patchGeometry, patchMaterial);
 const patchPlane3 = new THREE.Mesh(patchGeometry, patchMaterial);
 const patchPlane4 = new THREE.Mesh(patchGeometry, patchMaterial);
 const patchPlane5 = new THREE.Mesh(patchGeometry, patchMaterial);
-patchPlane1.position.set(-20,-2.999,35)
+patchPlane1.position.set(-20,-2.999,20)
 patchPlane1.rotation.set(Math.PI/2,0,0)
-patchPlane2.position.set(20,-2.999,35)
+patchPlane2.position.set(20,-2.999,-20)
 patchPlane2.rotation.set(Math.PI/2,0,0)
-patchPlane3.position.set(-20,-2.999,10)
+patchPlane3.position.set(-20,-2.999,-20)
 patchPlane3.rotation.set(Math.PI/2,0,0)
-patchPlane4.position.set(20,-2.999,10)
+patchPlane4.position.set(20,-2.999,20)
 patchPlane4.rotation.set(Math.PI/2,0,0)
-patchPlane5.position.set(0,-2.999,0)
+patchPlane5.position.set(0,-2.999,-35)
 patchPlane5.rotation.set(Math.PI/2,0,0)
 
 // Add the floor to the scene
