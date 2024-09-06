@@ -99,7 +99,6 @@ canvas {
   padding: 1em;
   border-bottom-left-radius: 0.9em;
   border-bottom-right-radius: 0.9em;
-
   -webkit-box-shadow: 0em 0.25em 0.75em rgba(124, 124, 124, 0.5);
   -moz-box-shadow: 0em 0.25em 0.75em rgba(124, 124, 124, 0.5);
   box-shadow: 0em 0.25em 0.75em rgba(124, 124, 124, 0.5);
@@ -111,7 +110,6 @@ canvas {
 #menu #content.shift-up {
   transform: translateY(-20px); 
 }
-
 
 
 #menu #img_container img {
@@ -234,22 +232,29 @@ canvas {
   }
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 20px;
+  background-color: rgba(128, 128, 128, 0.384);
+  height: 40px;
+}
+
 #model-info {
   position: fixed;
   top: 50%; /* Positions the element vertically in the middle */
   left: 50%; /* Positions the element horizontally in the middle */
   transform: translate(-50%, -50%); /* Adjusts position back to center */
   background-color: rgb(255, 255, 255);
-  padding: 20px;
   border-radius: 10px;
   font-family: "Arial", sans-serif;
   color: rgb(0, 0, 0);
-  width: 300px;
-  height: 150px;
-  z-index: 1;
+  height: 50rem;
+  overflow: auto  ;
+  z-index: 0  ;
   transition: all 0.3s ease-in-out;
+  border-radius: 12px;
   opacity: 0;
-  box-sizing: border-box; /* Ensures padding does not affect width */
+  box-sizing: border-box; 
 }
 
 
@@ -376,4 +381,76 @@ canvas {
   background-color: rgb(0, 255, 34);
   cursor: pointer;
   transform: scale(1.05);
+}
+
+.plant-container {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+}
+
+.plant-header {
+  background-color: #8fb98a;
+  padding: 15px;
+  border-radius: 8px 8px 0 0;
+  color: #fff;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.plant-content {
+  padding: 15px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.plant-section {
+  margin-bottom: 20px;
+}
+
+.plant-section h3 {
+  color: #5d8c57;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #8fb98a;
+  padding-bottom: 5px;
+}
+
+.plant-section p,
+.plant-section ul {
+  margin-left: 20px;
+  font-size: 1rem;
+}
+
+.plant-section ul {
+  list-style-type: square;
+  margin-top: 10px;
+}
+
+.highlight {
+  color: #8fb98a;
+  font-weight: bold;
+}
+
+.youtube-links {
+  background-color: #f0f8f5;
+  padding: 10px;
+  border: 1px solid #8fb98a;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.youtube-links a {
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  margin: 5px 0;
+}
+
+.youtube-links a:hover {
+  text-decoration: underline;
 }
