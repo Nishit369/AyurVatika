@@ -185,15 +185,66 @@ gltfLoader.load(
 );
 
 // side flowers
+gltfLoader.load(
+  "flower_stand_filled.glb", // Replace with the path to your GLTF/GLB file
+  (gltf) => {
+    const model5 = gltf.scene;
+    model5.rotation.y = -Math.PI;
+    model5.position.set(25,-3,42.5 );
+    model5.scale.set(0.06,0.06,0.06);
+    scene.add(model5)
+  },
+  (xhr) => {
+    console.log(`Model ${(xhr.loaded / xhr.total) * 100}% loaded`); // Track loading progress
+  },
+  (error) => {
+    console.error("Error loading model:", error); // Capture any errors
+  }
+);
+
+// vase
+
+gltfLoader.load(
+  "flower_vase.glb", // Replace with the path to your GLTF/GLB file
+  (gltf) => {
+    const model5 = gltf.scene;
+    model5.position.set(-45,-3,35 );
+    model5.scale.set(5,5,5);
+    scene.add(model5)
+  },
+  (xhr) => {
+    console.log(`Model ${(xhr.loaded / xhr.total) * 100}% loaded`); // Track loading progress
+  },
+  (error) => {
+    console.error("Error loading model:", error); // Capture any errors
+  }
+);
+
+
+// fountain
+const fbxLoader = new FBXLoader();
+fbxLoader.load(
+  "zsolnay-fountain/source/фонтан3.fbx", // Replace with the path to your GLTF/GLB file
+  (model) => {
+    model.position.set(0,4,0 );
+    model.scale.set(0.04,0.04,0.04);
+    scene.add(model)
+  },
+  (xhr) => {
+    console.log(`Model ${(xhr.loaded / xhr.total) * 100}% loaded`); // Track loading progress
+  },
+  (error) => {
+    console.error("Error loading model:", error); // Capture any errors
+  }
+);
+
 // gltfLoader.load(
-//   "gardening._park._landscape._7_a/scene.gltf", // Replace with the path to your GLTF/GLB file
+//   "gazebo.glb", // Replace with the path to your GLTF/GLB file
 //   (gltf) => {
-//     const model5 = gltf.scene;
-//     model5.rotation.x = Math.PI;
-//     model5.rotation.z = Math.PI;
-//     model5.position.set(-40,-40,-20 );
-//     model5.scale.set(10,10,10);
-//     scene.add(model5)
+//     const model = gltf.scene;
+//     model.position.set(0,6,0 );
+//     model.scale.set(10,10,10);
+//     scene.add(model)
 //   },
 //   (xhr) => {
 //     console.log(`Model ${(xhr.loaded / xhr.total) * 100}% loaded`); // Track loading progress
@@ -202,6 +253,10 @@ gltfLoader.load(
 //     console.error("Error loading model:", error); // Capture any errors
 //   }
 // );
+
+
+
+
 
 // Floor geometry and material
 const planeGeometry = new THREE.PlaneGeometry(100, 100);
@@ -287,164 +342,164 @@ const popup = document.getElementById("model-info");
 // Model data array
 const modelData = [
   // Your model data here
-//   {
-//     path: 'giloye.glb',
-//     position: { x: -20, y: -3, z: 20 },
-//     scale: {x:10, y:10, z:10},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'giloye.glb',
-//     position: { x: -23, y: -3, z: 17 },
-//     scale: {x:10, y:10, z:10},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'giloye.glb',
-//     position: { x: -23, y: -3, z: 23 },
-//     scale: {x:10, y:10, z:10},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'giloye.glb',
-//     position: { x: -17, y: -3, z: 23 },
-//     scale: {x:10, y:10, z:10},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'giloye.glb',
-//     position: { x: -17, y: -3, z: 17 },
-//     scale: {x:10, y:10, z:10},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// // 2nd set
-// {
-//     path: 'golumolu.glb',
-//     position: { x: 6.5, y: -3, z: 20 },
-//     scale: {x:20, y:20, z:20},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
+  {
+    path: 'giloye.glb',
+    position: { x: -20, y: -3, z: 20 },
+    scale: {x:10, y:10, z:10},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'giloye.glb',
+    position: { x: -23, y: -3, z: 17 },
+    scale: {x:10, y:10, z:10},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'giloye.glb',
+    position: { x: -23, y: -3, z: 23 },
+    scale: {x:10, y:10, z:10},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'giloye.glb',
+    position: { x: -17, y: -3, z: 23 },
+    scale: {x:10, y:10, z:10},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'giloye.glb',
+    position: { x: -17, y: -3, z: 17 },
+    scale: {x:10, y:10, z:10},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+// 2nd set
+{
+    path: 'golumolu.glb',
+    position: { x: 6.5, y: -3, z: 20 },
+    scale: {x:20, y:20, z:20},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
   
-// {
-//     path: 'golumolu.glb',
-//     position: { x: 3, y: -3, z: 17 },
-//     scale: {x:20, y:20, z:20},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'golumolu.glb',
-//     position: { x: 3, y: -3, z: 23 },
-//     scale: {x:20, y:20, z:20},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'golumolu.glb',
-//     position: { x: 10, y: -3, z: 23 },
-//     scale: {x:20, y:20, z:20},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'golumolu.glb',
-//     position: { x: 10, y: -3, z: 17 },
-//     scale: {x:20, y:20, z:20},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
+{
+    path: 'golumolu.glb',
+    position: { x: 3, y: -3, z: 17 },
+    scale: {x:20, y:20, z:20},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'golumolu.glb',
+    position: { x: 3, y: -3, z: 23 },
+    scale: {x:20, y:20, z:20},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'golumolu.glb',
+    position: { x: 10, y: -3, z: 23 },
+    scale: {x:20, y:20, z:20},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'golumolu.glb',
+    position: { x: 10, y: -3, z: 17 },
+    scale: {x:20, y:20, z:20},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
 
 // 3rd set
-// {
-//     path: 'aloe-vera-final.glb',
-//     position: { x:20, y: -4, z: -20 },
-//     scale: {x:5, y:5, z:5},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
+{
+    path: 'aloe-vera-final.glb',
+    position: { x:20, y: -4, z: -20 },
+    scale: {x:5, y:5, z:5},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
   
-// {
-//     path: 'aloe-vera-final.glb',
-//     position: { x: 17, y: -4, z: -23 },
-//     scale: {x:5, y:5, z:5},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'aloe-vera-final.glb',
-//     position: { x: 17, y: -4, z:  -17},
-//     scale: {x:5, y:5, z:5},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'aloe-vera-final.glb',
-//     position: { x: 23, y: -4, z: -23 },
-//     scale: {x:5, y:5, z:5},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'aloe-vera-final.glb',
-//     position: { x: 23, y: -4, z: -17 },
-//     scale: {x:5, y:5, z:5},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
+{
+    path: 'aloe-vera-final.glb',
+    position: { x: 17, y: -4, z: -23 },
+    scale: {x:5, y:5, z:5},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'aloe-vera-final.glb',
+    position: { x: 17, y: -4, z:  -17},
+    scale: {x:5, y:5, z:5},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'aloe-vera-final.glb',
+    position: { x: 23, y: -4, z: -23 },
+    scale: {x:5, y:5, z:5},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'aloe-vera-final.glb',
+    position: { x: 23, y: -4, z: -17 },
+    scale: {x:5, y:5, z:5},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
 
-//4th set
-// {
-//     path: 'Tulsi.glb',
-//     position: { x: -20, y: -3, z:-20 },
-//     scale: {x:8, y:8, z:8},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
+// 4th set
+{
+    path: 'Tulsi.glb',
+    position: { x: -20, y: -3, z:-20 },
+    scale: {x:8, y:8, z:8},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
   
-// {
-//     path: 'Tulsi.glb',
-//     position: { x: -23, y: -3, z: -23 },
-//     scale: {x:8, y:8, z:8},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'Tulsi.glb',
-//     position: { x: -23, y: -3, z: -17},
-//     scale: {x:8, y:8, z:8},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'Tulsi.glb',
-//     position: { x: -17, y: -3, z: -17 },
-//     scale: {x:8, y:8, z:8},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
-// {
-//     path: 'Tulsi.glb',
-//     position: { x: -17, y: -3, z: -23 },
-//     scale: {x:8, y:8, z:8},
-//     info: { title: 'Model 1', description: 'This is a description for Model 1' }
-// },
+{
+    path: 'Tulsi.glb',
+    position: { x: -23, y: -3, z: -23 },
+    scale: {x:8, y:8, z:8},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'Tulsi.glb',
+    position: { x: -23, y: -3, z: -17},
+    scale: {x:8, y:8, z:8},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'Tulsi.glb',
+    position: { x: -17, y: -3, z: -17 },
+    scale: {x:8, y:8, z:8},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
+{
+    path: 'Ashwagandha.glb',
+    position: { x: -17, y: -3, z: -23 },
+    scale: {x:8, y:8, z:8},
+    info: { title: 'Model 1', description: 'This is a description for Model 1' }
+},
 
 
 // 5th set
 // {
-//     path: 'Nilgiri_final.glb',
-//     position: { x: 0, y: -3, z: -35 },
-//     scale: {x:0.1, y:0.1, z:0.1},
+//     path: 'Nilgiri-final.glb',
+//     position: { x: 0, y: 0, z: 40 },
+//     scale: {x:10, y:10, z:10},
 //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
 // },
   
 // {
-//     path: 'Nilgiri_final.glb',
+//     path: 'Nilgiri-final.glb',
 //     position: { x: 3, y: -3, z: -32 },
 //     scale: {x:4, y:4, z:4},
 //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
 // },
 // {
-//     path: 'Nilgiri_final.glb',
+//     path: 'Nilgiri-final.glb',
 //     position: { x: 3, y: -3, z: -38 },
 //     scale: {x:4, y:4, z:4},
 //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
 // },
 // {
-//     path: 'Nilgiri_final.glb',
+//     path: 'Nilgiri-final.glb',
 //     position: { x: -3, y: -3, z: -32 },
 //     scale: {x:4, y:4, z:4},
 //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
 // },
 // {
-//     path: 'Nilgiri_final.glb',
+//     path: 'Nilgiri-final.glb',
 //     position: { x: -3, y: -3, z: -38 },
 //     scale: {x:4, y:4, z:4},
 //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
@@ -521,9 +576,11 @@ function loadFences() {
 loadFences();
 
 // Collision detection
-const collisionDistance = 2; // Adjust this value based on your fence size
+const fountainRadius = 15; // Adjust this value based on your fountain size
+const fountainPosition = new THREE.Vector3(0, 0, 0); // Adjust this to match your fountain's position
 
 function checkCollision(newPosition) {
+  // Check collision with fences
   for (let fence of fences) {
     const fenceBoundingBox = new THREE.Box3().setFromObject(fence);
     const playerBoundingBox = new THREE.Box3().setFromCenterAndSize(
@@ -535,6 +592,13 @@ function checkCollision(newPosition) {
       return true; // Collision detected
     }
   }
+
+  // Check collision with fountain
+  const distanceToFountain = newPosition.distanceTo(fountainPosition);
+  if (distanceToFountain < fountainRadius) {
+    return true; // Collision detected
+  }
+
   return false; // No collision
 }
 
