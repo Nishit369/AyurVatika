@@ -59,6 +59,7 @@ const keysPressed = {
   a: false,
   s: false,
   d: false,
+  j:false
 };
 
 document.addEventListener(
@@ -178,6 +179,84 @@ gltfLoader.load(
     console.error("Error loading model:", error); // Capture any errors
   }
 );
+
+
+//stairs
+let stairsModel;
+let stairsBox;
+const stairDistance = 2; // Adjust this value to set the desired distance from the stairs
+
+// Modify your stairs loading function
+gltfLoader.load(
+  "staircase.glb",
+  (gltf) => {
+    stairsModel = gltf.scene;
+    stairsModel.position.set(51, -3, -18);
+   
+    stairsModel.scale.set(5, 5, 5);
+    scene.add(stairsModel);
+
+    // Calculate the bounding box of the stairs
+    stairsBox = new THREE.Box3().setFromObject(stairsModel);
+    // console.log(stairsBox.min.x)
+    
+    // Expand the bounding box by the stair distance
+    stairsBox.min.subScalar(stairDistance);
+    stairsBox.max.addScalar(stairDistance);
+  },
+  (xhr) => {
+    console.log(`Model ${(xhr.loaded / xhr.total) * 100}% loaded`);
+  },
+  (error) => {
+    console.error("Error loading model:", error);
+  }
+);
+let stairsModel1;
+let stairsBox1;
+const stairDistance1 = 2; // Adjust this value to set the desired distance from the stairs
+
+// Modify your stairs loading function
+gltfLoader.load(
+  "staircase.glb",
+  (gltf) => {
+    stairsModel1 = gltf.scene;
+    stairsModel1.position.set(-51, -3, -48);
+    stairsModel1.rotation.y = Math.PI;
+    stairsModel1.scale.set(5, 5, 5);
+    scene.add(stairsModel1);
+
+    // Calculate the bounding box of the stairs
+    stairsBox1 = new THREE.Box3().setFromObject(stairsModel1);
+    // console.log(stairsBox1.max.y)
+    
+    // Expand the bounding box by the stair distance
+    stairsBox1.min.subScalar(stairDistance1);
+    stairsBox1.max.addScalar(stairDistance1);
+  },
+  (xhr) => {
+    console.log(`Model ${(xhr.loaded / xhr.total) * 100}% loaded`);
+  },
+  (error) => {
+    console.error("Error loading model:", error);
+  }
+);
+
+function isTooCloseToStairs(position) {
+  if (!stairsBox ) return false;
+  if(stairsBox){
+  return stairsBox.containsPoint(position);
+
+}}
+function isTooCloseToStairs1(position) {
+  if (!stairsBox) return false;
+if (stairsBox1){
+  return stairsBox1.containsPoint(position);
+}
+}
+
+
+
+
 
 
 // fountain
@@ -304,134 +383,134 @@ const popup = document.getElementById("model-info");
 
 const modelData = [
 //     // Your model data here
-    {
-      path: 'giloye.glb',
-      position: { x: -20, y: -3, z: 20 },
-      scale: {x:10, y:10, z:10},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'giloye.glb',
-      position: { x: -23, y: -3, z: 17 },
-      scale: {x:10, y:10, z:10},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'giloye.glb',
-      position: { x: -23, y: -3, z: 23 },
-      scale: {x:10, y:10, z:10},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'giloye.glb',
-      position: { x: -17, y: -3, z: 23 },
-      scale: {x:10, y:10, z:10},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'giloye.glb',
-      position: { x: -17, y: -3, z: 17 },
-      scale: {x:10, y:10, z:10},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  // 2nd set
-  {
-      path: 'golumolu.glb',
-      position: { x: 6.5, y: -3, z: 20 },
-      scale: {x:20, y:20, z:20},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
+//     {
+//       path: 'giloye.glb',
+//       position: { x: -20, y: -3, z: 20 },
+//       scale: {x:10, y:10, z:10},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'giloye.glb',
+//       position: { x: -23, y: -3, z: 17 },
+//       scale: {x:10, y:10, z:10},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'giloye.glb',
+//       position: { x: -23, y: -3, z: 23 },
+//       scale: {x:10, y:10, z:10},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'giloye.glb',
+//       position: { x: -17, y: -3, z: 23 },
+//       scale: {x:10, y:10, z:10},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'giloye.glb',
+//       position: { x: -17, y: -3, z: 17 },
+//       scale: {x:10, y:10, z:10},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   // 2nd set
+//   {
+//       path: 'golumolu.glb',
+//       position: { x: 6.5, y: -3, z: 20 },
+//       scale: {x:20, y:20, z:20},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
     
-  {
-      path: 'golumolu.glb',
-      position: { x: 3, y: -3, z: 17 },
-      scale: {x:20, y:20, z:20},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'golumolu.glb',
-      position: { x: 3, y: -3, z: 23 },
-      scale: {x:20, y:20, z:20},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'golumolu.glb',
-      position: { x: 10, y: -3, z: 23 },
-      scale: {x:20, y:20, z:20},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'golumolu.glb',
-      position: { x: 10, y: -3, z: 17 },
-      scale: {x:20, y:20, z:20},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
+//   {
+//       path: 'golumolu.glb',
+//       position: { x: 3, y: -3, z: 17 },
+//       scale: {x:20, y:20, z:20},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'golumolu.glb',
+//       position: { x: 3, y: -3, z: 23 },
+//       scale: {x:20, y:20, z:20},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'golumolu.glb',
+//       position: { x: 10, y: -3, z: 23 },
+//       scale: {x:20, y:20, z:20},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'golumolu.glb',
+//       position: { x: 10, y: -3, z: 17 },
+//       scale: {x:20, y:20, z:20},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
   
-//   // 3rd set
-  {
-      path: 'aloe-vera-final.glb',
-      position: { x:20, y: -4, z: -20 },
-      scale: {x:5, y:5, z:5},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
+// //   // 3rd set
+//   {
+//       path: 'aloe-vera-final.glb',
+//       position: { x:20, y: -4, z: -20 },
+//       scale: {x:5, y:5, z:5},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
     
-  {
-      path: 'aloe-vera-final.glb',
-      position: { x: 17, y: -4, z: -23 },
-      scale: {x:5, y:5, z:5},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'aloe-vera-final.glb',
-      position: { x: 17, y: -4, z:  -17},
-      scale: {x:5, y:5, z:5},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'aloe-vera-final.glb',
-      position: { x: 23, y: -4, z: -23 },
-      scale: {x:5, y:5, z:5},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'aloe-vera-final.glb',
-      position: { x: 23, y: -4, z: -17 },
-      scale: {x:5, y:5, z:5},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
+//   {
+//       path: 'aloe-vera-final.glb',
+//       position: { x: 17, y: -4, z: -23 },
+//       scale: {x:5, y:5, z:5},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'aloe-vera-final.glb',
+//       position: { x: 17, y: -4, z:  -17},
+//       scale: {x:5, y:5, z:5},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'aloe-vera-final.glb',
+//       position: { x: 23, y: -4, z: -23 },
+//       scale: {x:5, y:5, z:5},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'aloe-vera-final.glb',
+//       position: { x: 23, y: -4, z: -17 },
+//       scale: {x:5, y:5, z:5},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
 
-//   // 4th set
-  {
-      path: 'Tulsi.glb',
-      position: { x: -20, y: -3, z:-20 },
-      scale: {x:8, y:8, z:8},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
+// //   // 4th set
+//   {
+//       path: 'Tulsi.glb',
+//       position: { x: -20, y: -3, z:-20 },
+//       scale: {x:8, y:8, z:8},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
     
-  {
-      path: 'Tulsi.glb',
-      position: { x: -23, y: -3, z: -23 },
-      scale: {x:8, y:8, z:8},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'Tulsi.glb',
-      position: { x: -23, y: -3, z: -17},
-      scale: {x:8, y:8, z:8},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'Tulsi.glb',
-      position: { x: -17, y: -3, z: -17 },
-      scale: {x:8, y:8, z:8},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
-  {
-      path: 'Tulsi.glb',
-      position: { x: -17, y: -3, z: -23 },
-      scale: {x:8, y:8, z:8},
-      info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  },
+//   {
+//       path: 'Tulsi.glb',
+//       position: { x: -23, y: -3, z: -23 },
+//       scale: {x:8, y:8, z:8},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'Tulsi.glb',
+//       position: { x: -23, y: -3, z: -17},
+//       scale: {x:8, y:8, z:8},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'Tulsi.glb',
+//       position: { x: -17, y: -3, z: -17 },
+//       scale: {x:8, y:8, z:8},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
+//   {
+//       path: 'Tulsi.glb',
+//       position: { x: -17, y: -3, z: -23 },
+//       scale: {x:8, y:8, z:8},
+//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+//   },
   
   
 
@@ -454,7 +533,6 @@ modelData.forEach((data) => {
   });
 });
 
-  
 
 // Controls
 const controls = new PointerLockControls(camera, document.body);
@@ -515,43 +593,201 @@ function checkCollision(newPosition) {
     return true;
   }
 
+
   return false;
 }
 
+
+
 function updateMovement(delta) {
   const moveSpeed = 25 * delta;
+  const acceleration = 15;
   const newPosition = new THREE.Vector3();
   camera.getWorldPosition(newPosition);
 
   if (keysPressed.ArrowRight || keysPressed.d) {
     controls.moveRight(moveSpeed);
     camera.getWorldPosition(newPosition);
-    if (checkCollision(newPosition)) {
+
+    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition)) {
       controls.moveRight(-moveSpeed);
     }
   }
   if (keysPressed.ArrowLeft || keysPressed.a) {
     controls.moveRight(-moveSpeed);
     camera.getWorldPosition(newPosition);
-    if (checkCollision(newPosition)) {
+    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition)) {
       controls.moveRight(moveSpeed);
     }
   }
   if (keysPressed.ArrowUp || keysPressed.w) {
     controls.moveForward(moveSpeed);
     camera.getWorldPosition(newPosition);
-    if (checkCollision(newPosition)) {
+    if(camera.position.y>=stairsBox.min.y &&  camera.position.y<=stairsBox.max.y && isTooCloseToStairs(newPosition)){
+      camera.position.y+=moveSpeed*(delta)*acceleration;
+      camera.position.x += moveSpeed*(delta)*acceleration;
+      
+    }
+    if(camera.position.y>=stairsBox1.min.y &&  camera.position.y<=stairsBox1.max.y && isTooCloseToStairs1(newPosition)){
+      camera.position.y+=moveSpeed*(delta)*acceleration;
+      camera.position.x -= moveSpeed*(delta)*acceleration;
+      
+    }
+    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition) || isTooCloseToStairs1(newPosition)) {
       controls.moveForward(-moveSpeed);
     }
   }
   if (keysPressed.ArrowDown || keysPressed.s) {
     controls.moveForward(-moveSpeed);
     camera.getWorldPosition(newPosition);
-    if (checkCollision(newPosition)) {
+    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition)) {
       controls.moveForward(moveSpeed);
     }
   }
+  if (camera.position.x>0 && keysPressed.j && camera.position.y>3){
+    camera.position.y -= moveSpeed*(delta)*(acceleration-3);
+    camera.position.x -= moveSpeed*(delta)*acceleration;
+  }
+  if(keysPressed.j && camera.position.y <=3){
+    camera.position.x = 18;
+  }
+  if (camera.position.x<0 && keysPressed.j && camera.position.y>3){
+    camera.position.y -= moveSpeed*(delta)*(acceleration-3);
+    camera.position.x += moveSpeed*(delta)*acceleration;
+  }
+  if(keysPressed.j && camera.position.y <=3){
+    camera.position.x = -18;
+  }
 }
+
+
+// Function to create and position all three gardens
+// Function to create and position all three gardens with all assets
+function setupThreeGardens() {
+  // Wait for the original garden to fully load
+  loadingManager.onLoad = () => {
+    // Clone the entire scene twice
+    const leftGarden = scene.clone(true);
+    const rightGarden = scene.clone(true);
+
+    // Function to remove camera and sky from a garden
+    const removeUniqueElements = (garden) => {
+      garden.children = garden.children.filter(child => 
+        !(child instanceof THREE.PerspectiveCamera) &&
+        !(child instanceof Sky)
+      );
+    };
+
+    // Remove camera and sky from cloned gardens
+    removeUniqueElements(leftGarden);
+    removeUniqueElements(rightGarden);
+
+    // Position the cloned gardens
+    leftGarden.position.set(-115, 30, 0);
+    rightGarden.position.set(115, 30, 0);
+
+    // Add the cloned gardens to the scene
+    scene.add(leftGarden);
+    scene.add(rightGarden);
+
+    // Update collision detection to include new gardens
+    updateCollisionDetection();
+
+    console.log("All three gardens have been set up.");
+  };
+}
+
+function updateCollisionDetection() {
+  const gardenWidth = 100;  // Adjust based on your garden size
+  const gardenHeight = 50;  // Height difference between gardens
+
+  function checkCollision(newPosition) {
+    for (let xOffset of [-100, 0, 100]) {
+      const yOffset = xOffset === 0 ? 0 : gardenHeight;
+
+      // Check collision with all objects in each garden
+      scene.children.forEach(object => {
+        if (object instanceof THREE.Group) {  // Assuming each garden is a Group
+          object.children.forEach(child => {
+            if (child.isMesh) {
+              const childBoundingBox = new THREE.Box3().setFromObject(child);
+              childBoundingBox.min.add(new THREE.Vector3(xOffset, yOffset, 0));
+              childBoundingBox.max.add(new THREE.Vector3(xOffset, yOffset, 0));
+
+              const playerBoundingBox = new THREE.Box3().setFromCenterAndSize(
+                newPosition,
+                new THREE.Vector3(1, 3, 1)
+              );
+
+              if (childBoundingBox.intersectsBox(playerBoundingBox)) {
+                return true;
+              }
+            }
+          });
+        }
+      });
+    }
+    
+    return false;
+  }
+
+  // Replace the existing checkCollision function with this new one
+  window.checkCollision = checkCollision;
+}
+
+// Call this function during your initial scene setup
+setupThreeGardens();
+
+// Modify your existing stair climbing logic
+function handleStairClimbing(delta) {
+  const moveSpeed = 25 * delta;
+  const acceleration = 15;
+  
+  if (keysPressed.w || keysPressed.ArrowUp) {
+    if (isTooCloseToStairs(camera.position)) {
+      if (camera.position.y < 50) {  // 50 is the height of elevated gardens
+        camera.position.y += moveSpeed * acceleration;
+        if (camera.position.x > 0) {
+          camera.position.x += moveSpeed * acceleration;
+        } else {
+          camera.position.x -= moveSpeed * acceleration;
+        }
+      }
+    } else {
+      controls.moveForward(moveSpeed);
+    }
+  }
+  
+  // Add similar logic for moving down the stairs
+  if (keysPressed.s || keysPressed.ArrowDown) {
+    if (isTooCloseToStairs(camera.position)) {
+      if (camera.position.y > 0) {  // Don't go below ground level
+        camera.position.y -= moveSpeed * acceleration;
+        if (camera.position.x > 0) {
+          camera.position.x -= moveSpeed * acceleration;
+        } else {
+          camera.position.x += moveSpeed * acceleration;
+        }
+      }
+    } else {
+      controls.moveBackward(moveSpeed);
+    }
+  }
+}
+
+// Update your animation loop
+function animate() {
+  requestAnimationFrame(animate);
+  
+  const delta = clock.getDelta();
+  handleStairClimbing(delta);
+  updateMovement(delta);
+  
+  // Rest of your animation code...
+  
+  renderer.render(scene, camera);
+}
+
 
 function displayModelInfo(info) {
   console.log("Displaying model info:", info);
