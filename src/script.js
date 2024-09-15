@@ -411,159 +411,173 @@ animateSky();
 
 // Popup element
 const popup = document.getElementById("model-info");
-
-
 const modelData = [
-  //     // Your model data here
-    //   {
+  // Uncomment your models here as needed.
+    {
+        path: 'giloye.glb',
+        position: { x: -20, y: -3, z: 20 },
+        scale: {x:10, y:10, z:10},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    // {
     //     path: 'giloye.glb',
-    //     position: { x: -20, y: -3, z: 20 },
+    //     position: { x: -23, y: -3, z: 17 },
     //     scale: {x:10, y:10, z:10},
     //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
     // },
-  //   {
-  //       path: 'giloye.glb',
-  //       position: { x: -23, y: -3, z: 17 },
-  //       scale: {x:10, y:10, z:10},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'giloye.glb',
-  //       position: { x: -23, y: -3, z: 23 },
-  //       scale: {x:10, y:10, z:10},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'giloye.glb',
-  //       position: { x: -17, y: -3, z: 23 },
-  //       scale: {x:10, y:10, z:10},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'giloye.glb',
-  //       position: { x: -17, y: -3, z: 17 },
-  //       scale: {x:10, y:10, z:10},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   // 2nd set
-  //   {
-  //       path: 'golumolu.glb',
-  //       position: { x: 6.5, y: -3, z: 20 },
-  //       scale: {x:20, y:20, z:20},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-
-  //   {
-  //       path: 'golumolu.glb',
-  //       position: { x: 3, y: -3, z: 17 },
-  //       scale: {x:20, y:20, z:20},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'golumolu.glb',
-  //       position: { x: 3, y: -3, z: 23 },
-  //       scale: {x:20, y:20, z:20},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'golumolu.glb',
-  //       position: { x: 10, y: -3, z: 23 },
-  //       scale: {x:20, y:20, z:20},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'golumolu.glb',
-  //       position: { x: 10, y: -3, z: 17 },
-  //       scale: {x:20, y:20, z:20},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-
-  // //   // 3rd set
-  //   {
-  //       path: 'aloe-vera-final.glb',
-  //       position: { x:20, y: -4, z: -20 },
-  //       scale: {x:5, y:5, z:5},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-
-  //   {
-  //       path: 'aloe-vera-final.glb',
-  //       position: { x: 17, y: -4, z: -23 },
-  //       scale: {x:5, y:5, z:5},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'aloe-vera-final.glb',
-  //       position: { x: 17, y: -4, z:  -17},
-  //       scale: {x:5, y:5, z:5},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'aloe-vera-final.glb',
-  //       position: { x: 23, y: -4, z: -23 },
-  //       scale: {x:5, y:5, z:5},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'aloe-vera-final.glb',
-  //       position: { x: 23, y: -4, z: -17 },
-  //       scale: {x:5, y:5, z:5},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-
-  // //   // 4th set
-  //   {
-  //       path: 'Tulsi.glb',
-  //       position: { x: -20, y: -3, z:-20 },
-  //       scale: {x:8, y:8, z:8},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-
-  //   {
-  //       path: 'Tulsi.glb',
-  //       position: { x: -23, y: -3, z: -23 },
-  //       scale: {x:8, y:8, z:8},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'Tulsi.glb',
-  //       position: { x: -23, y: -3, z: -17},
-  //       scale: {x:8, y:8, z:8},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'Tulsi.glb',
-  //       position: { x: -17, y: -3, z: -17 },
-  //       scale: {x:8, y:8, z:8},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-  //   {
-  //       path: 'Tulsi.glb',
-  //       position: { x: -17, y: -3, z: -23 },
-  //       scale: {x:8, y:8, z:8},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
-
-
-
-
+    // {
+    //     path: 'giloye.glb',
+    //     position: { x: -23, y: -3, z: 23 },
+    //     scale: {x:10, y:10, z:10},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'giloye.glb',
+    //     position: { x: -17, y: -3, z: 23 },
+    //     scale: {x:10, y:10, z:10},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'giloye.glb',
+    //     position: { x: -17, y: -3, z: 17 },
+    //     scale: {x:10, y:10, z:10},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // 2nd set
+    {
+        path: 'golumolu.glb',
+        position: { x: 6.5, y: -3, z: 20 },
+        scale: {x:20, y:20, z:20},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    // {
+    //     path: 'golumolu.glb',
+    //     position: { x: 3, y: -3, z: 17 },
+    //     scale: {x:20, y:20, z:20},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'golumolu.glb',
+    //     position: { x: 3, y: -3, z: 23 },
+    //     scale: {x:20, y:20, z:20},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'golumolu.glb',
+    //     position: { x: 10, y: -3, z: 23 },
+    //     scale: {x:20, y:20, z:20},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'golumolu.glb',
+    //     position: { x: 10, y: -3, z: 17 },
+    //     scale: {x:20, y:20, z:20},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // 3rd set
+    {
+        path: 'aloe-vera-final.glb',
+        position: { x:20, y: -4, z: -20 },
+        scale: {x:5, y:5, z:5},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    // {
+    //     path: 'aloe-vera-final.glb',
+    //     position: { x: 17, y: -4, z: -23 },
+    //     scale: {x:5, y:5, z:5},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'aloe-vera-final.glb',
+    //     position: { x: 17, y: -4, z:  -17},
+    //     scale: {x:5, y:5, z:5},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'aloe-vera-final.glb',
+    //     position: { x: 23, y: -4, z: -23 },
+    //     scale: {x:5, y:5, z:5},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'aloe-vera-final.glb',
+    //     position: { x: 23, y: -4, z: -17 },
+    //     scale: {x:5, y:5, z:5},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // 4th set
+    {
+        path: 'Tulsi.glb',
+        position: { x: -20, y: -3, z:-20 },
+        scale: {x:8, y:8, z:8},
+        info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    },
+    // {
+    //     path: 'Tulsi.glb',
+    //     position: { x: -23, y: -3, z: -23 },
+    //     scale: {x:8, y:8, z:8},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'Tulsi.glb',
+    //     position: { x: -23, y: -3, z: -17},
+    //     scale: {x:8, y:8, z:8},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'Tulsi.glb',
+    //     position: { x: -17, y: -3, z: -17 },
+    //     scale: {x:8, y:8, z:8},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
+    // {
+    //     path: 'Tulsi.glb',
+    //     position: { x: -17, y: -3, z: -23 },
+    //     scale: {x:8, y:8, z:8},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // }
 ];
 
 
-
+// Define offsets for the three gardens
+const gardenOffsets = [
+  { x: 0, y: 0, z: 0 },  // Main garden
+  { x: 112, y: 30, z: 0 }, // Garden 2 (shifted by 100 units on the x-axis)
+  { x: -112, y: 30, z: 0 } // Garden 3 (shifted by -100 units on the x-axis)
+];
 
 const loader = new GLTFLoader();
 const models = [];
+
 modelData.forEach((data) => {
-  loader.load(data.path, (gltf) => {
-    const model = gltf.scene;
-    model.position.set(data.position.x, data.position.y, data.position.z);
-    model.scale.set(data.scale.x, data.scale.y, data.scale.z);
-    model.userData = { info: data.info };
-    models.push(model);
-    scene.add(model);
+  // For each garden, load the same model but apply the garden offset
+  gardenOffsets.forEach((offset) => {
+      loader.load(data.path, (gltf) => {
+          const model = gltf.scene;
+          // Set position with offset applied
+          model.position.set(data.position.x + offset.x, data.position.y + offset.y, data.position.z + offset.z);
+          model.scale.set(data.scale.x, data.scale.y, data.scale.z);
+          model.userData = { info: data.info };
+          models.push(model);
+          scene.add(model);
+      });
   });
 });
+
+
+
+// const loader = new GLTFLoader();
+// const models = [];
+// modelData.forEach((data) => {
+//   loader.load(data.path, (gltf) => {
+//     const model = gltf.scene;
+//     model.position.set(data.position.x, data.position.y, data.position.z);
+//     model.scale.set(data.scale.x, data.scale.y, data.scale.z);
+//     model.userData = { info: data.info };
+//     models.push(model);
+//     scene.add(model);
+//   });
+// });
 
 
 // Controls
@@ -725,6 +739,55 @@ gltfLoader.load(
         
     }
 );
+
+gltfLoader.load(
+    "vata.glb", // Replace with the path to your GLTF/GLB file
+    (gltf) => {
+        const vata = gltf.scene;
+        vata.position.set(-17.5, 0, -37.5);
+        vata.scale.set(5,5,5);
+        scene.add(vata);
+
+        // Increment the loaded models counter
+        
+    }
+);
+gltfLoader.load(
+    "pitta.glb", // Replace with the path to your GLTF/GLB file
+    (gltf) => {
+        const vata = gltf.scene;
+        vata.position.set(-17.5, 0, 37.5);
+        vata.scale.set(5,5,5);
+        scene.add(vata);
+
+        // Increment the loaded models counter
+        
+    }
+);
+gltfLoader.load(
+    "vata.glb", // Replace with the path to your GLTF/GLB file
+    (gltf) => {
+        const vata = gltf.scene;
+        vata.position.set(38, 0, 43);
+        vata.scale.set(5,5,5);
+        scene.add(vata);
+
+        // Increment the loaded models counter
+        
+    }
+);
+gltfLoader.load(
+    "kapha.glb", // Replace with the path to your GLTF/GLB file
+    (gltf) => {
+        const vata = gltf.scene;
+        vata.position.set(38, 0, 43);
+        vata.scale.set(5,5,5);
+        scene.add(vata);
+
+        // Increment the loaded models counter
+        
+    }
+);
 let modelpillar;
 gltfLoader.load(
     "pillar.glb", // Replace with the path to your GLTF/GLB file
@@ -752,7 +815,7 @@ gltfLoader.load(
         scene.add(modelpillar5);
 
         let modelpillar6 = modelpillar.clone();
-        modelpillar6.position.set(150, -3, -35);
+        modelpillar6.position.set(150, -3, +35);
         scene.add(modelpillar6);
 
         let modelpillar7 = modelpillar.clone();
@@ -760,7 +823,7 @@ gltfLoader.load(
         scene.add(modelpillar7);
 
         let modelpillar8 = modelpillar.clone();
-        modelpillar8.position.set(75, -3, -35);
+        modelpillar8.position.set(75, -3, +35);
         scene.add(modelpillar8);
 
         // Increment the loaded models counter if needed
