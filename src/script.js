@@ -7,7 +7,7 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import gsap from "gsap";
-import { giloy_info,gotukola_info,tulsiInfo,aloeVeraInfo } from "./plants_info";
+import { giloy_info, gotukola_info, tulsiInfo, aloeVeraInfo } from "./plants_info";
 
 const loadingManager = new THREE.LoadingManager();
 
@@ -59,7 +59,7 @@ const keysPressed = {
   a: false,
   s: false,
   d: false,
-  j:false
+  j: false
 };
 
 document.addEventListener(
@@ -100,85 +100,86 @@ floorTexture.repeat.set(20, 20);
 
 // Load other models (lamp, bench, fountain, etc.) as before
 // ...
-
-gltfLoader.load(
-  "street_lamp.glb", // Replace with the path to your GLTF/GLB file
-  (gltf) => {
-    const model1 = gltf.scene;
-    model1.position.set(-42.5, -3, -42.5);
-    model1.scale.set(0.02, 0.02, 0.02);
-    const model2 = model1.clone();
-    model2.position.set(-42.5, -3, 42.5);
-    model2.scale.set(0.02, 0.02, 0.02);
-    const model3 = model1.clone();
-    model3.position.set(42.5, -3, -42.5);
-    model3.scale.set(0.02, 0.02, 0.02);
-    const model4 = model1.clone();
-    model4.position.set(42.5, -3, 42.5);
-    model4.scale.set(0.02, 0.02, 0.02);
-    scene.add(model1, model2, model3, model4);
-  }
-);
+// let model1,model2,model3,model4;
+// gltfLoader.load(
+//   "street_lamp.glb", // Replace with the path to your GLTF/GLB file
+//   (gltf) => {
+//     model1 = gltf.scene;
+//     model1.position.set(-42.5, -3, -42.5);
+//     model1.scale.set(0.02, 0.02, 0.02);
+//      model2 = model1.clone();
+//     model2.position.set(-42.5, -3, 42.5);
+//     model2.scale.set(0.02, 0.02, 0.02);
+//      model3 = model1.clone();
+//     model3.position.set(42.5, -3, -42.5);
+//     model3.scale.set(0.02, 0.02, 0.02);
+//      model4 = model1.clone();
+//     model4.position.set(42.5, -3, 42.5);
+//     model4.scale.set(0.02, 0.02, 0.02);
+//     // scene.add(model1, model2, model3, model4);
+//   }
+// );
 
 // fountain
 
-// bench
+// // bench
+// let modela,modelb,modelc,modeld;
+// gltfLoader.load(
+//   "bench.glb", // Replace with the path to your GLTF/GLB file
+//   (gltf) => {
+//      modela = gltf.scene;
+//     modela.position.set(-42.5, -3, -3.5);
+//     modela.scale.set(4, 4, 4);
+//     modelb = modela.clone();
+//     modelb.position.set(-42.5, -3, 15);
+//     modelb.scale.set(4, 4, 4);
+//     modelc = modela.clone();
+//     modelc.rotation.y = Math.PI;
+//     modelc.position.set(42.5, -3, -15);
+//     modelc.scale.set(4, 4, 4);
+//     modeld = modela.clone();
+//     modeld.rotation.y = Math.PI;
+//     modeld.position.set(42.5, -3, 3.5);
+//     modeld.scale.set(4, 4, 4);
+//     // scene.add(modela, modelb, modelc, modeld);
+//   }
+// );
 
-gltfLoader.load(
-  "bench.glb", // Replace with the path to your GLTF/GLB file
-  (gltf) => {
-    const model1 = gltf.scene;
-    model1.position.set(-42.5, -3, -3.5);
-    model1.scale.set(4, 4, 4);
-    const model2 = model1.clone();
-    model2.position.set(-42.5, -3, 15);
-    model2.scale.set(4, 4, 4);
-    const model3 = model1.clone();
-    model3.rotation.y = Math.PI;
-    model3.position.set(42.5, -3, -15);
-    model3.scale.set(4, 4, 4);
-    const model4 = model1.clone();
-    model4.rotation.y = Math.PI;
-    model4.position.set(42.5, -3, 3.5);
-    model4.scale.set(4, 4, 4);
-    scene.add(model1, model2, model3, model4);
-  }
-);
-
-// side flowers
-gltfLoader.load(
-  "flower_stand_filled.glb", // Replace with the path to your GLTF/GLB file
-  (gltf) => {
-    const model1 = gltf.scene;
-    model1.rotation.y = -Math.PI;
-    model1.position.set(25,-3,42.5 );
-    model1.scale.set(0.06,0.06,0.06);
-    const model2 = model1.clone()    
-    model2.position.set(0,-3,42.5 );
-    model2.scale.set(0.06,0.06,0.06);
-    const model3 = model1.clone()    
-    model3.position.set(-20,-3,42.5 );
-    model3.scale.set(0.06,0.06,0.06);
-    scene.add(model1,model2,model3);
-  });
+// side flowers\
+// let m1,m2,m3;
+// gltfLoader.load(
+//   "flower_stand_filled.glb", // Replace with the path to your GLTF/GLB file
+//   (gltf) => {
+//     m1 = gltf.scene;
+//     m1.rotation.y = -Math.PI;
+//     m1.position.set(25, -3, 42.5);
+//     m1.scale.set(0.06, 0.06, 0.06);
+//     m2 = m1.clone()
+//     m2.position.set(0, -3, 42.5);
+//     m2.scale.set(0.06, 0.06, 0.06);
+//     m3 = m1.clone()
+//     m3.position.set(-20, -3, 42.5);
+//     m3.scale.set(0.06, 0.06, 0.06);
+//     // scene.add(m1, m2, m3);
+//   });
 
 // vase
 
-gltfLoader.load(
-  "flower_vase.glb", // Replace with the path to your GLTF/GLB file
-  (gltf) => {
-    const model5 = gltf.scene;
-    model5.position.set(-45,-3,35 );
-    model5.scale.set(5,5,5);
-    scene.add(model5)
-  },
-  (xhr) => {
-    console.log(`Model ${(xhr.loaded / xhr.total) * 100}% loaded`); // Track loading progress
-  },
-  (error) => {
-    console.error("Error loading model:", error); // Capture any errors
-  }
-);
+// gltfLoader.load(
+//   "flower_vase.glb", // Replace with the path to your GLTF/GLB file
+//   (gltf) => {
+//     const model5 = gltf.scene;
+//     model5.position.set(-45, -3, 35);
+//     model5.scale.set(5, 5, 5);
+//     scene.add(model5)
+//   },
+//   (xhr) => {
+//     console.log(`Model ${(xhr.loaded / xhr.total) * 100}% loaded`); // Track loading progress
+//   },
+//   (error) => {
+//     console.error("Error loading model:", error); // Capture any errors
+//   }
+// );
 
 
 //stairs
@@ -192,14 +193,14 @@ gltfLoader.load(
   (gltf) => {
     stairsModel = gltf.scene;
     stairsModel.position.set(51, -3, -18);
-   
+
     stairsModel.scale.set(5, 5, 5);
     scene.add(stairsModel);
 
     // Calculate the bounding box of the stairs
     stairsBox = new THREE.Box3().setFromObject(stairsModel);
     // console.log(stairsBox.min.x)
-    
+
     // Expand the bounding box by the stair distance
     stairsBox.min.subScalar(stairDistance);
     stairsBox.max.addScalar(stairDistance);
@@ -220,7 +221,7 @@ gltfLoader.load(
   "staircase.glb",
   (gltf) => {
     stairsModel1 = gltf.scene;
-    stairsModel1.position.set(-51, -3, -48);
+    stairsModel1.position.set(-51, -4, -48);
     stairsModel1.rotation.y = Math.PI;
     stairsModel1.scale.set(5, 5, 5);
     scene.add(stairsModel1);
@@ -228,7 +229,7 @@ gltfLoader.load(
     // Calculate the bounding box of the stairs
     stairsBox1 = new THREE.Box3().setFromObject(stairsModel1);
     // console.log(stairsBox1.max.y)
-    
+
     // Expand the bounding box by the stair distance
     stairsBox1.min.subScalar(stairDistance1);
     stairsBox1.max.addScalar(stairDistance1);
@@ -242,16 +243,17 @@ gltfLoader.load(
 );
 
 function isTooCloseToStairs(position) {
-  if (!stairsBox ) return false;
-  if(stairsBox){
-  return stairsBox.containsPoint(position);
-
-}}
-function isTooCloseToStairs1(position) {
   if (!stairsBox) return false;
-if (stairsBox1){
-  return stairsBox1.containsPoint(position);
+  if (stairsBox) {
+    return stairsBox.containsPoint(position);
+
+  }
 }
+function isTooCloseToStairs1(position) {
+  if (!stairsBox1) return false;
+  if (stairsBox1) {
+    return stairsBox1.containsPoint(position);
+  }
 }
 
 
@@ -264,8 +266,8 @@ const fbxLoader = new FBXLoader();
 fbxLoader.load(
   "zsolnay-fountain/source/фонтан3.fbx", // Replace with the path to your GLTF/GLB file
   (model) => {
-    model.position.set(0,4,0 );
-    model.scale.set(0.04,0.04,0.04);
+    model.position.set(0, 4, 0);
+    model.scale.set(0.04, 0.04, 0.04);
     scene.add(model)
   },
   (xhr) => {
@@ -318,8 +320,8 @@ patchPlane4.rotation.set(Math.PI / 2, 0, 0);
 
 // Add information for patch planes
 const patchInfo = [
-  { title: "Patch 1", description: giloy_info},
-  { title: "Patch 3", description: aloeVeraInfo},
+  { title: "Patch 1", description: giloy_info },
+  { title: "Patch 3", description: aloeVeraInfo },
   { title: "Patch 4", description: tulsiInfo },
   { title: "Patch 2", description: gotukola_info },
 ];
@@ -382,145 +384,145 @@ const popup = document.getElementById("model-info");
 
 
 const modelData = [
-//     // Your model data here
-//     {
-//       path: 'giloye.glb',
-//       position: { x: -20, y: -3, z: 20 },
-//       scale: {x:10, y:10, z:10},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'giloye.glb',
-//       position: { x: -23, y: -3, z: 17 },
-//       scale: {x:10, y:10, z:10},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'giloye.glb',
-//       position: { x: -23, y: -3, z: 23 },
-//       scale: {x:10, y:10, z:10},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'giloye.glb',
-//       position: { x: -17, y: -3, z: 23 },
-//       scale: {x:10, y:10, z:10},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'giloye.glb',
-//       position: { x: -17, y: -3, z: 17 },
-//       scale: {x:10, y:10, z:10},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   // 2nd set
-//   {
-//       path: 'golumolu.glb',
-//       position: { x: 6.5, y: -3, z: 20 },
-//       scale: {x:20, y:20, z:20},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-    
-//   {
-//       path: 'golumolu.glb',
-//       position: { x: 3, y: -3, z: 17 },
-//       scale: {x:20, y:20, z:20},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'golumolu.glb',
-//       position: { x: 3, y: -3, z: 23 },
-//       scale: {x:20, y:20, z:20},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'golumolu.glb',
-//       position: { x: 10, y: -3, z: 23 },
-//       scale: {x:20, y:20, z:20},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'golumolu.glb',
-//       position: { x: 10, y: -3, z: 17 },
-//       scale: {x:20, y:20, z:20},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-  
-// //   // 3rd set
-//   {
-//       path: 'aloe-vera-final.glb',
-//       position: { x:20, y: -4, z: -20 },
-//       scale: {x:5, y:5, z:5},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-    
-//   {
-//       path: 'aloe-vera-final.glb',
-//       position: { x: 17, y: -4, z: -23 },
-//       scale: {x:5, y:5, z:5},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'aloe-vera-final.glb',
-//       position: { x: 17, y: -4, z:  -17},
-//       scale: {x:5, y:5, z:5},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'aloe-vera-final.glb',
-//       position: { x: 23, y: -4, z: -23 },
-//       scale: {x:5, y:5, z:5},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'aloe-vera-final.glb',
-//       position: { x: 23, y: -4, z: -17 },
-//       scale: {x:5, y:5, z:5},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
+  //     // Your model data here
+  //     {
+  //       path: 'giloye.glb',
+  //       position: { x: -20, y: -3, z: 20 },
+  //       scale: {x:10, y:10, z:10},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'giloye.glb',
+  //       position: { x: -23, y: -3, z: 17 },
+  //       scale: {x:10, y:10, z:10},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'giloye.glb',
+  //       position: { x: -23, y: -3, z: 23 },
+  //       scale: {x:10, y:10, z:10},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'giloye.glb',
+  //       position: { x: -17, y: -3, z: 23 },
+  //       scale: {x:10, y:10, z:10},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'giloye.glb',
+  //       position: { x: -17, y: -3, z: 17 },
+  //       scale: {x:10, y:10, z:10},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   // 2nd set
+  //   {
+  //       path: 'golumolu.glb',
+  //       position: { x: 6.5, y: -3, z: 20 },
+  //       scale: {x:20, y:20, z:20},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
 
-// //   // 4th set
-//   {
-//       path: 'Tulsi.glb',
-//       position: { x: -20, y: -3, z:-20 },
-//       scale: {x:8, y:8, z:8},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-    
-//   {
-//       path: 'Tulsi.glb',
-//       position: { x: -23, y: -3, z: -23 },
-//       scale: {x:8, y:8, z:8},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'Tulsi.glb',
-//       position: { x: -23, y: -3, z: -17},
-//       scale: {x:8, y:8, z:8},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'Tulsi.glb',
-//       position: { x: -17, y: -3, z: -17 },
-//       scale: {x:8, y:8, z:8},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-//   {
-//       path: 'Tulsi.glb',
-//       position: { x: -17, y: -3, z: -23 },
-//       scale: {x:8, y:8, z:8},
-//       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-//   },
-  
-  
+  //   {
+  //       path: 'golumolu.glb',
+  //       position: { x: 3, y: -3, z: 17 },
+  //       scale: {x:20, y:20, z:20},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'golumolu.glb',
+  //       position: { x: 3, y: -3, z: 23 },
+  //       scale: {x:20, y:20, z:20},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'golumolu.glb',
+  //       position: { x: 10, y: -3, z: 23 },
+  //       scale: {x:20, y:20, z:20},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'golumolu.glb',
+  //       position: { x: 10, y: -3, z: 17 },
+  //       scale: {x:20, y:20, z:20},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
 
-  
-  ];
+  // //   // 3rd set
+  //   {
+  //       path: 'aloe-vera-final.glb',
+  //       position: { x:20, y: -4, z: -20 },
+  //       scale: {x:5, y:5, z:5},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+
+  //   {
+  //       path: 'aloe-vera-final.glb',
+  //       position: { x: 17, y: -4, z: -23 },
+  //       scale: {x:5, y:5, z:5},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'aloe-vera-final.glb',
+  //       position: { x: 17, y: -4, z:  -17},
+  //       scale: {x:5, y:5, z:5},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'aloe-vera-final.glb',
+  //       position: { x: 23, y: -4, z: -23 },
+  //       scale: {x:5, y:5, z:5},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'aloe-vera-final.glb',
+  //       position: { x: 23, y: -4, z: -17 },
+  //       scale: {x:5, y:5, z:5},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+
+  // //   // 4th set
+  //   {
+  //       path: 'Tulsi.glb',
+  //       position: { x: -20, y: -3, z:-20 },
+  //       scale: {x:8, y:8, z:8},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+
+  //   {
+  //       path: 'Tulsi.glb',
+  //       position: { x: -23, y: -3, z: -23 },
+  //       scale: {x:8, y:8, z:8},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'Tulsi.glb',
+  //       position: { x: -23, y: -3, z: -17},
+  //       scale: {x:8, y:8, z:8},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'Tulsi.glb',
+  //       position: { x: -17, y: -3, z: -17 },
+  //       scale: {x:8, y:8, z:8},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
+  //   {
+  //       path: 'Tulsi.glb',
+  //       position: { x: -17, y: -3, z: -23 },
+  //       scale: {x:8, y:8, z:8},
+  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
+  //   },
 
 
 
 
-  const loader = new GLTFLoader();
+];
+
+
+
+
+const loader = new GLTFLoader();
 const models = [];
 modelData.forEach((data) => {
   loader.load(data.path, (gltf) => {
@@ -543,15 +545,15 @@ let showMenuOnUnlock = false;
 // Fence loading and collision detection
 const fenceLoader = new GLTFLoader();
 const fences = [];
-
+const fencePositions = [
+  { x: -50, z: 0 },
+  { x: 0, z: -50 },
+  { x: 0, z: 50 },
+  { x: 50, z: 0 },
+];
 // Load fence model and position around the plane
-function loadFences() {
-  const fencePositions = [
-    { x: -50, z: 0 },
-    { x: 0, z: -50 },
-    { x: 0, z: 50 },
-    { x: 50, z: 0 },
-  ];
+function loadFences(fencePositions) {
+
 
   fencePositions.forEach((pos, index) => {
     fenceLoader.load("wallfence.glb", (gltf) => {
@@ -569,7 +571,7 @@ function loadFences() {
   });
 }
 
-loadFences();
+loadFences(fencePositions);
 
 // Collision detection
 const fountainRadius = 15;
@@ -588,11 +590,36 @@ function checkCollision(newPosition) {
     }
   }
 
+//   const distanceToFountain = newPosition.distanceTo(fountainPosition);
+//   if (distanceToFountain < fountainRadius) {
+//     return true;
+//   }
+
+
+//   return false;
+// }
+
+const gardens = [gardenGroup, leftGarden, rightGarden];
+  
+  for (let garden of gardens) {
+    garden.traverse((child) => {
+      if (child.isMesh) {
+        const boundingBox = new THREE.Box3().setFromObject(child);
+        const playerBox = new THREE.Box3().setFromCenterAndSize(
+          newPosition,
+          new THREE.Vector3(1, 3, 1)
+        );
+        
+        if (boundingBox.intersectsBox(playerBox)) {
+          return true;
+        }
+      }
+    });
+  }
   const distanceToFountain = newPosition.distanceTo(fountainPosition);
   if (distanceToFountain < fountainRadius) {
     return true;
   }
-
 
   return false;
 }
@@ -609,29 +636,33 @@ function updateMovement(delta) {
     controls.moveRight(moveSpeed);
     camera.getWorldPosition(newPosition);
 
-    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition)) {
+    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition)|| isTooCloseToStairs1(newPosition)) {
       controls.moveRight(-moveSpeed);
     }
   }
   if (keysPressed.ArrowLeft || keysPressed.a) {
     controls.moveRight(-moveSpeed);
     camera.getWorldPosition(newPosition);
-    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition)) {
+    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition)|| isTooCloseToStairs1(newPosition)) {
       controls.moveRight(moveSpeed);
     }
   }
   if (keysPressed.ArrowUp || keysPressed.w) {
     controls.moveForward(moveSpeed);
     camera.getWorldPosition(newPosition);
-    if(camera.position.y>=stairsBox.min.y &&  camera.position.y<=stairsBox.max.y && isTooCloseToStairs(newPosition)){
-      camera.position.y+=moveSpeed*(delta)*acceleration;
-      camera.position.x += moveSpeed*(delta)*acceleration;
-      
+    if (camera.position.y >= stairsBox.min.y && camera.position.y <= stairsBox.max.y && isTooCloseToStairs(newPosition)) {
+      camera.position.y += moveSpeed * (delta) * acceleration;
+      camera.position.x += moveSpeed * (delta) * acceleration;
+
     }
-    if(camera.position.y>=stairsBox1.min.y &&  camera.position.y<=stairsBox1.max.y && isTooCloseToStairs1(newPosition)){
-      camera.position.y+=moveSpeed*(delta)*acceleration;
-      camera.position.x -= moveSpeed*(delta)*acceleration;
-      
+    if(camera.position.y>=32)
+    {
+      camera.position.y=33;
+    }
+    if (camera.position.y >= stairsBox1.min.y && camera.position.y <= stairsBox1.max.y && isTooCloseToStairs1(newPosition)) {
+      camera.position.y += moveSpeed * (delta) * acceleration;
+      camera.position.x -= moveSpeed * (delta) * acceleration;
+
     }
     if (checkCollision(newPosition) || isTooCloseToStairs(newPosition) || isTooCloseToStairs1(newPosition)) {
       controls.moveForward(-moveSpeed);
@@ -640,109 +671,256 @@ function updateMovement(delta) {
   if (keysPressed.ArrowDown || keysPressed.s) {
     controls.moveForward(-moveSpeed);
     camera.getWorldPosition(newPosition);
-    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition)) {
+    if (checkCollision(newPosition) || isTooCloseToStairs(newPosition)|| isTooCloseToStairs1(newPosition)) {
       controls.moveForward(moveSpeed);
     }
   }
-  if (camera.position.x>0 && keysPressed.j && camera.position.y>3){
-    camera.position.y -= moveSpeed*(delta)*(acceleration-3);
-    camera.position.x -= moveSpeed*(delta)*acceleration;
+  if (camera.position.x > 0 && keysPressed.j && camera.position.y > 3) {
+    // This handles going down the right stairs
+    camera.position.y -= moveSpeed * (delta) * (acceleration - 3);
+    camera.position.x -= moveSpeed * (delta) * acceleration;
   }
-  if(keysPressed.j && camera.position.y <=3){
-    camera.position.x = 18;
+  if (keysPressed.j && camera.position.y <= 3 && isTooCloseToStairs(newPosition)) {
+    // When you reach the bottom of the right stairs
+    camera.position.x = 18;  // Move to the correct right-side position
   }
-  if (camera.position.x<0 && keysPressed.j && camera.position.y>3){
-    camera.position.y -= moveSpeed*(delta)*(acceleration-3);
-    camera.position.x += moveSpeed*(delta)*acceleration;
+  
+  if (camera.position.x < 0 && keysPressed.j && camera.position.y > 3) {
+    // This handles going down the left stairs
+    camera.position.y -= moveSpeed * (delta) * (acceleration - 3);
+    camera.position.x += moveSpeed * (delta) * acceleration;
   }
-  if(keysPressed.j && camera.position.y <=3){
-    camera.position.x = -18;
+  if (keysPressed.j && camera.position.y <= 3 && isTooCloseToStairs1(newPosition)) {
+    // When you reach the bottom of the left stairs
+    camera.position.x = -18;  // Move to the correct left-side position
   }
+  
 }
 
 
-// Function to create and position all three gardens
-// Function to create and position all three gardens with all assets
-function setupThreeGardens() {
-  // Wait for the original garden to fully load
-  loadingManager.onLoad = () => {
-    // Clone the entire scene twice
-    const leftGarden = scene.clone(true);
-    const rightGarden = scene.clone(true);
+// // Function to create and position all three gardens
+// // Function to create and position all three gardens with all assets
+// function setupThreeGardens() {
+//   // Wait for the original garden to fully load
+//   loadingManager.onLoad = () => {
+//     // Clone the entire scene twice
+//     const leftGarden = scene.clone(true);
+//     const rightGarden = scene.clone(true);
 
-    // Function to remove camera and sky from a garden
-    const removeUniqueElements = (garden) => {
-      garden.children = garden.children.filter(child => 
-        !(child instanceof THREE.PerspectiveCamera) &&
-        !(child instanceof Sky)
-      );
-    };
+//     // Function to remove camera and sky from a garden
+//     const removeUniqueElements = (garden) => {
+//       garden.children = garden.children.filter(child =>
+//         !(child instanceof THREE.PerspectiveCamera) &&
+//         !(child instanceof Sky)
+//       );
+//     };
 
-    // Remove camera and sky from cloned gardens
-    removeUniqueElements(leftGarden);
-    removeUniqueElements(rightGarden);
+//     // Remove camera and sky from cloned gardens
+//     removeUniqueElements(leftGarden);
+//     removeUniqueElements(rightGarden);
 
-    // Position the cloned gardens
-    leftGarden.position.set(-115, 30, 0);
-    rightGarden.position.set(115, 30, 0);
+//     // Position the cloned gardens
+//     leftGarden.position.set(-115, 30, 0);
+//     rightGarden.position.set(115, 30, 0);
 
-    // Add the cloned gardens to the scene
-    scene.add(leftGarden);
-    scene.add(rightGarden);
+//     // Add the cloned gardens to the scene
+//     scene.add(leftGarden);
+//     scene.add(rightGarden);
 
-    // Update collision detection to include new gardens
-    updateCollisionDetection();
+//     // Update collision detection to include new gardens
+//     updateCollisionDetection();
 
-    console.log("All three gardens have been set up.");
-  };
-}
+//     console.log("All three gardens have been set up.");
+//   };
+// }
 
-function updateCollisionDetection() {
-  const gardenWidth = 100;  // Adjust based on your garden size
-  const gardenHeight = 50;  // Height difference between gardens
+// function updateCollisionDetection() {
+//   const gardenWidth = 100;  // Adjust based on your garden size
+//   const gardenHeight = 50;  // Height difference between gardens
+//   xz
+//   function checkCollision(newPosition) {
+//     for (let xOffset of [-100, 0, 100]) {
+//       const yOffset = xOffset === 0 ? 0 : gardenHeight;
 
-  function checkCollision(newPosition) {
-    for (let xOffset of [-100, 0, 100]) {
-      const yOffset = xOffset === 0 ? 0 : gardenHeight;
+//       // Check collision with all objects in each garden
+//       scene.children.forEach(object => {
+//         if (object instanceof THREE.Group) {  // Assuming each garden is a Group
+//           object.children.forEach(child => {
+//             if (child.isMesh) {
+//               const childBoundingBox = new THREE.Box3().setFromObject(child);
+//               childBoundingBox.min.add(new THREE.Vector3(xOffset, yOffset, 0));
+//               childBoundingBox.max.add(new THREE.Vector3(xOffset, yOffset, 0));
 
-      // Check collision with all objects in each garden
-      scene.children.forEach(object => {
-        if (object instanceof THREE.Group) {  // Assuming each garden is a Group
-          object.children.forEach(child => {
-            if (child.isMesh) {
-              const childBoundingBox = new THREE.Box3().setFromObject(child);
-              childBoundingBox.min.add(new THREE.Vector3(xOffset, yOffset, 0));
-              childBoundingBox.max.add(new THREE.Vector3(xOffset, yOffset, 0));
+//               const playerBoundingBox = new THREE.Box3().setFromCenterAndSize(
+//                 newPosition,
+//                 new THREE.Vector3(1, 3, 1)
+//               );
 
-              const playerBoundingBox = new THREE.Box3().setFromCenterAndSize(
-                newPosition,
-                new THREE.Vector3(1, 3, 1)
-              );
+//               if (childBoundingBox.intersectsBox(playerBoundingBox)) {
+//                 return true;
+//               }
+//             }
+//           });
+//         }
+//       });
+//     }
 
-              if (childBoundingBox.intersectsBox(playerBoundingBox)) {
-                return true;
-              }
-            }
-          });
-        }
-      });
+//     return false;
+//   }
+
+//   // Replace the existing checkCollision function with this new one
+//   window.checkCollision = checkCollision;
+// }
+
+// // Call this function during your initial scene setup
+// setupThreeGardens();
+
+
+
+// Add all garden elements (assets, objects, interactive components)
+// loadFences( 
+//   [{ x: -210, z: 0 },
+//   { x: 0, z: -50 },
+//   { x: 0, z: 50 },
+//   { x: 50, z: 0 },
+//   ]);
+// gardenGroup.add(fountain);
+// gardenGroup.add(plant);
+
+// Add any other garden components...
+
+const gardenGroup = new THREE.Group();
+
+let modelsToLoad = 11; // Number of asynchronous models to load (adjust according to your needs)
+let modelsLoaded = 0; // Counter to track loaded models
+let leftGarden;
+let rightGarden;
+// Function to check if all models are loaded
+function checkAllModelsLoaded() {
+    if (modelsLoaded === modelsToLoad) {
+        // Clone the garden group for left and right floating gardens
+        leftGarden = gardenGroup.clone(true);
+        rightGarden = gardenGroup.clone(true);
+
+        // Position the floating gardens
+        leftGarden.position.set(-112, 30, 0);
+        leftGarden.rotation.y = -Math.PI/2;
+        rightGarden.position.set(112, 30, 0);
+        rightGarden.rotation.y = Math.PI/2;
+        // Add the cloned gardens to the scene
+        scene.add(leftGarden);
+        scene.add(rightGarden);
     }
-    
-    return false;
-  }
-
-  // Replace the existing checkCollision function with this new one
-  window.checkCollision = checkCollision;
 }
 
-// Call this function during your initial scene setup
-setupThreeGardens();
+// Load the benches
+let modela, modelb, modelc, modeld;
+gltfLoader.load(
+    "bench.glb", // Replace with the path to your GLTF/GLB file
+    (gltf) => {
+        modela = gltf.scene;
+        modela.position.set(-42.5, -3, -3.5);
+        modela.scale.set(4, 4, 4);
+        modelb = modela.clone();
+        modelb.position.set(-42.5, -3, 15);
+        modelb.scale.set(4, 4, 4);
+        modelc = modela.clone();
+        modelc.rotation.y = Math.PI;
+        modelc.position.set(42.5, -3, -15);
+        modelc.scale.set(4, 4, 4);
+        modeld = modela.clone();
+        modeld.rotation.y = Math.PI;
+        modeld.position.set(42.5, -3, 3.5);
+        modeld.scale.set(4, 4, 4);
+        gardenGroup.add(modela, modelb, modelc, modeld);
+
+        // Increment the loaded models counter
+        modelsLoaded++;
+        checkAllModelsLoaded();
+    }
+);
+
+let model1,model2,model3,model4;
+gltfLoader.load(
+  "street_lamp.glb", // Replace with the path to your GLTF/GLB file
+  (gltf) => {
+    model1 = gltf.scene;
+    model1.position.set(-42.5, -3, -42.5);
+    model1.scale.set(0.02, 0.02, 0.02);
+     model2 = model1.clone();
+    model2.position.set(-42.5, -3, 42.5);
+    model2.scale.set(0.02, 0.02, 0.02);
+     model3 = model1.clone();
+    model3.position.set(42.5, -3, -42.5);
+    model3.scale.set(0.02, 0.02, 0.02);
+     model4 = model1.clone();
+    model4.position.set(42.5, -3, 42.5);
+    model4.scale.set(0.02, 0.02, 0.02);
+    gardenGroup.add(model1, model2, model3, model4);
+    modelsLoaded++;
+        checkAllModelsLoaded();
+  }
+);
+let m1,m2,m3;
+gltfLoader.load(
+  "flower_stand_filled.glb", // Replace with the path to your GLTF/GLB file
+  (gltf) => {
+    m1 = gltf.scene;
+    m1.rotation.y = -Math.PI;
+    m1.position.set(25, -3, 42.5);
+    m1.scale.set(0.06, 0.06, 0.06);
+    m2 = m1.clone()
+    m2.position.set(0, -3, 42.5);
+    m2.scale.set(0.06, 0.06, 0.06);
+    m3 = m1.clone()
+    m3.position.set(-20, -3, 42.5);
+    m3.scale.set(0.06, 0.06, 0.06);
+    gardenGroup.add(m1, m2, m3);
+    modelsLoaded++;
+    checkAllModelsLoaded();
+  });
+
+
+
+
+
+
+// Add other elements to the garden group (assuming these don’t need async loading)
+
+gardenGroup.add(floorPlane);
+gardenGroup.add(patchPlane1, patchPlane2, patchPlane3, patchPlane4);
+
+// Add the main garden group to the scene
+scene.add(gardenGroup);
+
+// Check if static models are immediately available and loaded
+modelsLoaded += 8; // Assuming other models are not asynchronous and loaded immediately
+checkAllModelsLoaded(); // Check after adding other models
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Modify your existing stair climbing logic
 function handleStairClimbing(delta) {
   const moveSpeed = 25 * delta;
   const acceleration = 15;
-  
+
   if (keysPressed.w || keysPressed.ArrowUp) {
     if (isTooCloseToStairs(camera.position)) {
       if (camera.position.y < 50) {  // 50 is the height of elevated gardens
@@ -757,7 +935,7 @@ function handleStairClimbing(delta) {
       controls.moveForward(moveSpeed);
     }
   }
-  
+
   // Add similar logic for moving down the stairs
   if (keysPressed.s || keysPressed.ArrowDown) {
     if (isTooCloseToStairs(camera.position)) {
@@ -775,18 +953,7 @@ function handleStairClimbing(delta) {
   }
 }
 
-// Update your animation loop
-function animate() {
-  requestAnimationFrame(animate);
-  
-  const delta = clock.getDelta();
-  handleStairClimbing(delta);
-  updateMovement(delta);
-  
-  // Rest of your animation code...
-  
-  renderer.render(scene, camera);
-}
+
 
 
 function displayModelInfo(info) {
@@ -803,176 +970,176 @@ function hideModelInfo() {
 
 
 export const setupEventListeners = (controls, camera, scene) => {
-    document.addEventListener(
-      "keydown",
-      (event) => onKeyDown(event, controls),
-      false
-    );
-    document.addEventListener(
-      "keyup",
-      (event) => onKeyUp(event, controls),
-      false
-    );
-  
-    controls.addEventListener("unlock", () => {
-      if (showMenuOnUnlock) {
-        showMenu();
-      }
-      showMenuOnUnlock = false;
-    });
-  
-    document.getElementById("start_audio").addEventListener("click", startAudio);
-    document.getElementById("stop_audio").addEventListener("click", stopAudio);
-  };
-  
-  function togglePointerLock(controls) {
-    if (lockPointer) {
-      controls.lock();
-    } else {
-      showMenuOnUnlock = false;
-      controls.unlock();
-    }
-    lockPointer = !lockPointer;
-  }
-  
-  function onKeyDown(event, controls) {
-    if (event.key in keysPressed) {
-      keysPressed[event.key] = true;
-    }
-  
-    if (event.key === "Escape") {
+  document.addEventListener(
+    "keydown",
+    (event) => onKeyDown(event, controls),
+    false
+  );
+  document.addEventListener(
+    "keyup",
+    (event) => onKeyUp(event, controls),
+    false
+  );
+
+  controls.addEventListener("unlock", () => {
+    if (showMenuOnUnlock) {
       showMenu();
-      showMenuOnUnlock = true;
-      controls.unlock();
-      lockPointer = false;
     }
-  
-    if (event.key === "p") {
-      controls.unlock();
-      lockPointer = false;
-    }
-  
-    if (event.key === "Enter" || event.key === "Return") {
-      hideMenu();
-      controls.lock();
-      lockPointer = true;
-    }
-  
-    if (event.key === " ") {
-      togglePointerLock(controls);
-    }
-  
-    if (event.key === "g") {
-      startAudio();
-    }
-  
-    if (event.key === "p") {
-      stopAudio();
-    }
-  
-    if (event.key === "m") {
-      showMenu();
-      showMenuOnUnlock = true;
-      controls.unlock();
-      lockPointer = false;
-    }
-  
-    if (event.key === "r") {
-      location.reload();
-    }
-    if (event.key === "c") {
-      toggleCrouch();
-    }
-  }
-  
-  const crouchHeight = 1;
-  const standHeight = 3;
-  const crouchScale = 0.5;
-  const standScale = 1;
-  
-  let isCrouching = false;
-  
-  function toggleCrouch() {
-    if (isCrouching) {
-      gsap.to(camera.position, {
-        y: standHeight,
-        duration: 1,
-        ease: "power1.out",
-      });
-      gsap.to(camera.scale, {
-        x: standScale,
-        y: standScale,
-        z: standScale,
-        duration: 1,
-        ease: "power1.out",
-      });
-    } else {
-      gsap.to(camera.position, {
-        y: crouchHeight,
-        duration: 1,
-        ease: "power1.out",
-      });
-      gsap.to(camera.scale, {
-        x: crouchScale,
-        y: crouchScale,
-        z: crouchScale,
-        duration: 1,
-        ease: "power1.out",
-      });
-    }
-  
-    isCrouching = !isCrouching;
-  }
-  
-  function onKeyUp(event, controls) {
-    if (event.key in keysPressed) {
-      keysPressed[event.key] = false;
-    }
-  }
-  
-  document.getElementById("toggle-info").addEventListener("click", () => {
-    document.getElementById("info-panel").classList.toggle("collapsed");
-    document.getElementById("toggle-info").innerText = document
-      .getElementById("info-panel")
-      .classList.contains("collapsed")
-      ? "Show"
-      : "Hide";
+    showMenuOnUnlock = false;
   });
-  
-  document.getElementById("about_button").addEventListener("click", function () {
-    document.getElementById("about-overlay").classList.add("show");
-  });
-  
-  document.getElementById("close-about").addEventListener("click", function () {
-    document.getElementById("about-overlay").classList.remove("show");
-  });
-  
-  function startExperience() {
+
+  document.getElementById("start_audio").addEventListener("click", startAudio);
+  document.getElementById("stop_audio").addEventListener("click", stopAudio);
+};
+
+function togglePointerLock(controls) {
+  if (lockPointer) {
     controls.lock();
+  } else {
+    showMenuOnUnlock = false;
+    controls.unlock();
+  }
+  lockPointer = !lockPointer;
+}
+
+function onKeyDown(event, controls) {
+  if (event.key in keysPressed) {
+    keysPressed[event.key] = true;
+  }
+
+  if (event.key === "Escape") {
+    showMenu();
+    showMenuOnUnlock = true;
+    controls.unlock();
+    lockPointer = false;
+  }
+
+  if (event.key === "p") {
+    controls.unlock();
+    lockPointer = false;
+  }
+
+  if (event.key === "Enter" || event.key === "Return") {
     hideMenu();
+    controls.lock();
+    lockPointer = true;
+  }
+
+  if (event.key === " ") {
+    togglePointerLock(controls);
+  }
+
+  if (event.key === "g") {
     startAudio();
   }
-  
-  function endExperience() {
-    controls.unlock();
-    showMenu();
+
+  if (event.key === "p") {
     stopAudio();
   }
-  
-  const playButton = document.getElementById("play_button");
-  playButton.addEventListener("click", startExperience);
-  
-  function hideMenu() {
-    const menu = document.getElementById("menu");
-    menu.style.display = "none";
+
+  if (event.key === "m") {
+    showMenu();
+    showMenuOnUnlock = true;
+    controls.unlock();
+    lockPointer = false;
   }
-  
-  function showMenu() {
-    const menu = document.getElementById("menu");
-    menu.style.display = "block";
+
+  if (event.key === "r") {
+    location.reload();
   }
-  
-  controls.addEventListener("unlock", endExperience);
+  if (event.key === "c") {
+    toggleCrouch();
+  }
+}
+
+const crouchHeight = 1;
+const standHeight = 3;
+const crouchScale = 0.5;
+const standScale = 1;
+
+let isCrouching = false;
+
+function toggleCrouch() {
+  if (isCrouching) {
+    gsap.to(camera.position, {
+      y: standHeight,
+      duration: 1,
+      ease: "power1.out",
+    });
+    gsap.to(camera.scale, {
+      x: standScale,
+      y: standScale,
+      z: standScale,
+      duration: 1,
+      ease: "power1.out",
+    });
+  } else {
+    gsap.to(camera.position, {
+      y: crouchHeight,
+      duration: 1,
+      ease: "power1.out",
+    });
+    gsap.to(camera.scale, {
+      x: crouchScale,
+      y: crouchScale,
+      z: crouchScale,
+      duration: 1,
+      ease: "power1.out",
+    });
+  }
+
+  isCrouching = !isCrouching;
+}
+
+function onKeyUp(event, controls) {
+  if (event.key in keysPressed) {
+    keysPressed[event.key] = false;
+  }
+}
+
+document.getElementById("toggle-info").addEventListener("click", () => {
+  document.getElementById("info-panel").classList.toggle("collapsed");
+  document.getElementById("toggle-info").innerText = document
+    .getElementById("info-panel")
+    .classList.contains("collapsed")
+    ? "Show"
+    : "Hide";
+});
+
+document.getElementById("about_button").addEventListener("click", function () {
+  document.getElementById("about-overlay").classList.add("show");
+});
+
+document.getElementById("close-about").addEventListener("click", function () {
+  document.getElementById("about-overlay").classList.remove("show");
+});
+
+function startExperience() {
+  controls.lock();
+  hideMenu();
+  startAudio();
+}
+
+function endExperience() {
+  controls.unlock();
+  showMenu();
+  stopAudio();
+}
+
+const playButton = document.getElementById("play_button");
+playButton.addEventListener("click", startExperience);
+
+function hideMenu() {
+  const menu = document.getElementById("menu");
+  menu.style.display = "none";
+}
+
+function showMenu() {
+  const menu = document.getElementById("menu");
+  menu.style.display = "block";
+}
+
+controls.addEventListener("unlock", endExperience);
 
 const setupRendering = (scene, camera, renderer, patchPlanes, controls) => {
   const clock = new THREE.Clock();
