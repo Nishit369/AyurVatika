@@ -62,6 +62,11 @@ const keysPressed = {
   j: false
 };
 
+
+
+
+
+
 document.addEventListener(
   "keydown",
   (event) => {
@@ -181,7 +186,32 @@ floorTexture.repeat.set(20, 20);
 //   }
 // );
 
+const texture = textureLoader.load('grounded.jpg'); // Replace with your texture path
 
+// Create a larger plane geometry
+const width = 450; // Width of the plane
+const height = 450; // Height of the plane
+const planeGeometry1 = new THREE.PlaneGeometry(width, height);
+
+// Apply texture to the plane
+const planeMaterial1 = new THREE.MeshStandardMaterial({
+  map: texture,
+  // Optional: Adjust texture settings if needed
+  repeat: new THREE.Vector2(5, 5),
+  minFilter:THREE.LinearFilter,
+  magFilter:THREE.LinearFilter, // Adjust repeat if the texture appears too stretched
+  wrapS: THREE.RepeatWrapping,
+  wrapT: THREE.RepeatWrapping,
+  side: THREE.DoubleSide // If you need the texture on both sides
+});
+
+
+const planeMesh1 = new THREE.Mesh(planeGeometry1, planeMaterial1);
+planeMesh1.rotation.x = -Math.PI / 2; // Rotate the plane to be horizontal
+planeMesh1.position.set(0, -4, 0); // Position as needed
+
+// Add the plane to the scene
+scene.add(planeMesh1);
 //stairs
 let stairsModel;
 let stairsBox;
@@ -192,7 +222,7 @@ gltfLoader.load(
   "staircase.glb",
   (gltf) => {
     stairsModel = gltf.scene;
-    stairsModel.position.set(51, -3, -18);
+    stairsModel.position.set(51, -3, 48);
 
     stairsModel.scale.set(5, 5, 5);
     scene.add(stairsModel);
@@ -341,7 +371,7 @@ scene.add(floorPlane);
 scene.add(patchPlane1, patchPlane2, patchPlane3, patchPlane4);
 
 // Camera positioning
-camera.position.set(0, 3, 30);
+camera.position.set(30, 3,60);
 
 // Sky setup
 const sky = new Sky();
@@ -385,12 +415,12 @@ const popup = document.getElementById("model-info");
 
 const modelData = [
   //     // Your model data here
-  //     {
-  //       path: 'giloye.glb',
-  //       position: { x: -20, y: -3, z: 20 },
-  //       scale: {x:10, y:10, z:10},
-  //       info: { title: 'Model 1', description: 'This is a description for Model 1' }
-  //   },
+    //   {
+    //     path: 'giloye.glb',
+    //     position: { x: -20, y: -3, z: 20 },
+    //     scale: {x:10, y:10, z:10},
+    //     info: { title: 'Model 1', description: 'This is a description for Model 1' }
+    // },
   //   {
   //       path: 'giloye.glb',
   //       position: { x: -23, y: -3, z: 17 },
@@ -543,42 +573,108 @@ let lockPointer = true;
 let showMenuOnUnlock = false;
 
 // Fence loading and collision detection
-const fenceLoader = new GLTFLoader();
-const fences = [];
-const fencePositions = [
-  { x: -50, z: 0 },
-  { x: 0, z: -50 },
-  { x: 0, z: 50 },
-  { x: 50, z: 0 },
-];
-// Load fence model and position around the plane
-function loadFences(fencePositions) {
+// const fenceLoader = new GLTFLoader();
+// const fences = [];
+// const fencePositions = [
+//   { x: -50, z: 0 },
+//   { x: 0, z: -50 },
+//   { x: 0, z: 50 },
+//   { x: 50, z: 0 },
+// ];
+// // Load fence model and position around the plane
+// function loadFences(fencePositions) {
 
 
-  fencePositions.forEach((pos, index) => {
-    fenceLoader.load("wallfence.glb", (gltf) => {
-      const fence = gltf.scene;
-      fence.position.set(pos.x, -3, pos.z);
-      fence.scale.set(30, 10, 10);
+//   fencePositions.forEach((pos, index) => {
+//     fenceLoader.load("wallfence.glb", (gltf) => {
+//       const fence = gltf.scene;
+//       fence.position.set(pos.x, -3, pos.z);
+//       fence.scale.set(30, 10, 10);
 
-      if (index === 0 || index === 3) {
-        fence.rotation.y = Math.PI / 2;
+//       if (index === 0 || index === 3) {
+//         fence.rotation.y = Math.PI / 2;
+//       }
+
+//       fences.push(fence);
+//       scene.add(fence);
+//     });
+//   });
+// }
+
+// loadFences(fencePositions);
+function collectAllFences() {
+  const allFences = [];
+
+  // Collect fences from grounded garden
+  fences.forEach(fence => allFences.push(fence));
+
+  // Collect fences from floating gardens
+  [leftGarden, rightGarden].forEach(garden => {
+    garden.traverse(child => {
+      if (child.isMesh && child.name.includes("fence")) {
+        allFences.push(child);
       }
-
-      fences.push(fence);
-      scene.add(fence);
     });
   });
+
+  return allFences;
 }
 
-loadFences(fencePositions);
-
 // Collision detection
-const fountainRadius = 15;
-const fountainPosition = new THREE.Vector3(0, 0, 0);
+// const fountainRadius = 15;
+// const fountainPosition = new THREE.Vector3(0, 0, 0);
+
+// function checkCollision(newPosition) {
+//   for (let fence of fences) {
+//     const fenceBoundingBox = new THREE.Box3().setFromObject(fence);
+//     const playerBoundingBox = new THREE.Box3().setFromCenterAndSize(
+//       newPosition,
+//       new THREE.Vector3(1, 3, 1)
+//     );
+
+//     if (fenceBoundingBox.intersectsBox(playerBoundingBox)) {
+//       return true;
+//     }
+//   }
+
+// //   const distanceToFountain = newPosition.distanceTo(fountainPosition);
+// //   if (distanceToFountain < fountainRadius) {
+// //     return true;
+// //   }
+
+
+// //   return false;
+// // }
+
+// const gardens = [gardenGroup, leftGarden, rightGarden];
+  
+//   for (let garden of gardens) {
+//     garden.traverse((child) => {
+//       if (child.isMesh) {
+//         const boundingBox = new THREE.Box3().setFromObject(child);
+//         const playerBox = new THREE.Box3().setFromCenterAndSize(
+//           newPosition,
+//           new THREE.Vector3(1, 3, 1)
+//         );
+        
+//         if (boundingBox.intersectsBox(playerBox)) {
+//           return true;
+//         }
+//       }
+//     });
+//   }
+//   const distanceToFountain = newPosition.distanceTo(fountainPosition);
+//   if (distanceToFountain < fountainRadius) {
+//     return true;
+//   }
+
+//   return false;
+// }
 
 function checkCollision(newPosition) {
-  for (let fence of fences) {
+  const allFences = collectAllFences();
+
+  for (let fence of allFences) {
     const fenceBoundingBox = new THREE.Box3().setFromObject(fence);
     const playerBoundingBox = new THREE.Box3().setFromCenterAndSize(
       newPosition,
@@ -589,17 +685,7 @@ function checkCollision(newPosition) {
       return true;
     }
   }
-
-//   const distanceToFountain = newPosition.distanceTo(fountainPosition);
-//   if (distanceToFountain < fountainRadius) {
-//     return true;
-//   }
-
-
-//   return false;
-// }
-
-const gardens = [gardenGroup, leftGarden, rightGarden];
+  const gardens = [gardenGroup, leftGarden, rightGarden];
   
   for (let garden of gardens) {
     garden.traverse((child) => {
@@ -616,13 +702,71 @@ const gardens = [gardenGroup, leftGarden, rightGarden];
       }
     });
   }
-  const distanceToFountain = newPosition.distanceTo(fountainPosition);
-  if (distanceToFountain < fountainRadius) {
-    return true;
-  }
+
+  // Uncomment if you want to include fountain collision detection
+  // const distanceToFountain = newPosition.distanceTo(fountainPosition);
+  // if (distanceToFountain < fountainRadius) {
+  //   return true;
+  // }
 
   return false;
 }
+
+let model;
+gltfLoader.load(
+    "entry.glb", // Replace with the path to your GLTF/GLB file
+    (gltf) => {
+        model = gltf.scene;
+        model.position.set(-15, -6, -3.5);
+        model.scale.set(0.75,0.5,0.5);
+        scene.add(model);
+
+        // Increment the loaded models counter
+        
+    }
+);
+let modelpillar;
+gltfLoader.load(
+    "pillar.glb", // Replace with the path to your GLTF/GLB file
+    (gltf) => {
+        modelpillar = gltf.scene;
+        modelpillar.position.set(-150, -3, -35);
+        modelpillar.scale.set(0.005, 0.0045, 0.005);
+        scene.add(modelpillar);
+
+        // Clone and position additional pillars
+        let modelpillar2 = modelpillar.clone();
+        modelpillar2.position.set(-150, -3, 35);
+        scene.add(modelpillar2);
+
+        let modelpillar3 = modelpillar.clone();
+        modelpillar3.position.set(-75, -3, -35);
+        scene.add(modelpillar3);
+
+        let modelpillar4 = modelpillar.clone();
+        modelpillar4.position.set(-75, -3, 35);
+        scene.add(modelpillar4);
+
+        let modelpillar5 = modelpillar.clone();
+        modelpillar5.position.set(150, -3, -35);
+        scene.add(modelpillar5);
+
+        let modelpillar6 = modelpillar.clone();
+        modelpillar6.position.set(150, -3, -35);
+        scene.add(modelpillar6);
+
+        let modelpillar7 = modelpillar.clone();
+        modelpillar7.position.set(75, -3, -35);
+        scene.add(modelpillar7);
+
+        let modelpillar8 = modelpillar.clone();
+        modelpillar8.position.set(75, -3, -35);
+        scene.add(modelpillar8);
+
+        // Increment the loaded models counter if needed
+    }
+);
+
 
 
 
@@ -791,7 +935,7 @@ function updateMovement(delta) {
 
 const gardenGroup = new THREE.Group();
 
-let modelsToLoad = 11; // Number of asynchronous models to load (adjust according to your needs)
+let modelsToLoad = 15; // Number of asynchronous models to load (adjust according to your needs)
 let modelsLoaded = 0; // Counter to track loaded models
 let leftGarden;
 let rightGarden;
@@ -804,9 +948,9 @@ function checkAllModelsLoaded() {
 
         // Position the floating gardens
         leftGarden.position.set(-112, 30, 0);
-        leftGarden.rotation.y = -Math.PI/2;
+        leftGarden.rotation.y = Math.PI/2;
         rightGarden.position.set(112, 30, 0);
-        rightGarden.rotation.y = Math.PI/2;
+        rightGarden.rotation.y = -Math.PI/2;
         // Add the cloned gardens to the scene
         scene.add(leftGarden);
         scene.add(rightGarden);
@@ -866,19 +1010,64 @@ gltfLoader.load(
   "flower_stand_filled.glb", // Replace with the path to your GLTF/GLB file
   (gltf) => {
     m1 = gltf.scene;
-    m1.rotation.y = -Math.PI;
-    m1.position.set(25, -3, 42.5);
+  
+    m1.position.set(25, -3, -44.5);
     m1.scale.set(0.06, 0.06, 0.06);
     m2 = m1.clone()
-    m2.position.set(0, -3, 42.5);
+    m2.position.set(0, -3, -44.5);
     m2.scale.set(0.06, 0.06, 0.06);
     m3 = m1.clone()
-    m3.position.set(-20, -3, 42.5);
+    m3.position.set(-20, -3, -44.5);
     m3.scale.set(0.06, 0.06, 0.06);
     gardenGroup.add(m1, m2, m3);
     modelsLoaded++;
     checkAllModelsLoaded();
   });
+
+
+
+
+
+
+
+
+
+  const fenceLoader = new GLTFLoader();
+const fences = [];
+const fencePositions = [
+  { x: -50, z: 0 },
+  { x: 0, z: -50 },
+  { x: 0, z: 50 },
+  { x: 50, z: 0 },
+];
+// Load fence model and position around the plane
+function loadFences() {
+
+
+  fencePositions.forEach((pos, index) => {
+    fenceLoader.load("wallfence.glb", (gltf) => {
+      const fence = gltf.scene;
+      if (index!=2){
+      fence.position.set(pos.x, -3, pos.z);
+      fence.scale.set(30, 10, 10);
+      }
+      else if(index==2){
+        fence.position.set(-15, -3, pos.z);
+      fence.scale.set(20, 10, 10);
+      }
+      if (index === 0 || index === 3) {
+        fence.rotation.y = Math.PI / 2;
+      }
+
+      fences.push(fence);
+      gardenGroup.add(fence);
+      modelsLoaded++;
+    checkAllModelsLoaded();
+    });
+  });
+}
+loadFences();
+
 
 
 
@@ -1189,6 +1378,61 @@ const setupRendering = (scene, camera, renderer, patchPlanes, controls) => {
 
   render();
 };
+// const setupRendering = (scene, camera, renderer, patchPlanesMain, patchPlanesLeft, patchPlanesRight, controls) => {
+//   const clock = new THREE.Clock();
+//   const distanceThreshold = 5;
+//   const raycaster = new THREE.Raycaster();
+
+//   // Combine patch planes from the main and floating gardens
+//   const allPatchPlanes = [...patchPlanesMain, ...patchPlanesLeft, ...patchPlanesRight];
+
+//   let render = function () {
+//     const delta = clock.getDelta();
+//     updateMovement(delta);
+
+//     if (controls.isLocked) {
+//       let patchToShow = null;
+//       let closestDistance = Infinity;
+
+//       // Loop through all patch planes from the main and floating gardens
+//       allPatchPlanes.forEach((patch) => {
+//         const dx = camera.position.x - patch.position.x;
+//         const dz = camera.position.z - patch.position.z;
+//         const distanceToPatch = Math.sqrt(dx * dx + dz * dz);
+
+//         if (distanceToPatch < distanceThreshold && distanceToPatch < closestDistance) {
+//           raycaster.set(
+//             camera.position,
+//             camera.getWorldDirection(new THREE.Vector3())
+//           );
+//           const intersections = raycaster.intersectObject(patch, true);
+//           if (intersections.length > 0) {
+//             patchToShow = patch;
+//             closestDistance = distanceToPatch;
+//           }
+//         }
+//       });
+
+//       if (patchToShow && closestDistance <= distanceThreshold) {
+//         console.log("Patch in range:", patchToShow.userData.info);
+//         displayModelInfo(patchToShow.userData.info);  // Show the info of the patch/plant
+//       } else {
+//         hideModelInfo();  // Hide the popup when no patch is nearby
+//       }
+//     } else {
+//       hideModelInfo();  // Hide the popup when controls are not locked
+//     }
+
+//     renderer.render(scene, camera);
+//     requestAnimationFrame(render);
+//   };
+
+//   render();
+// };
+
+// // Call setupRendering and pass in patch planes for main and floating gardens
+// setupRendering(scene, camera, renderer, mainGardenPatchPlanes, leftGardenPatchPlanes, rightGardenPatchPlanes, controls);
+
 
 setupRendering(scene, camera, renderer, patchPlanes, controls);
 setupEventListeners(controls);
