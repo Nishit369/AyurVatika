@@ -996,7 +996,7 @@ function endExperience() {
 const playButton = document.getElementById("play_button");
 playButton.classList.add("disabled");
 const timerDisplay = document.getElementById("timer");
-let timeLeft = 60;
+let timeLeft = 120;
 
 const countdown = setInterval(() => {
   timeLeft--;
